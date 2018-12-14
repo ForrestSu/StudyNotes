@@ -1,0 +1,81 @@
+syntax = "proto3";
+package xc.demo;
+
+option java_package = "com.xctech.demo.pb";
+option java_outer_classname = "DemoProtos";
+
+import public "msgcarrier.proto";
+
+//// java demo protos////
+message Login
+{
+    int64 userid = 1;
+    string username = 2; // name
+    string password = 3; // passwd
+    string email = 4;
+    string nickname = 5;
+    // etc ...
+}
+
+message HelloMessage {
+  string messageText = 1;
+}
+
+message Alert {
+
+    int32 severity = 1;
+    repeated string message = 2;
+}
+
+message Task {
+    string taskName = 1;
+    int32 workload  = 2;
+}
+
+
+message Person {
+  string name = 1;
+  int32 id = 2;
+  string email = 3;
+
+  enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+  }
+
+  message PhoneNumber {
+    string number = 1;
+    PhoneType type = 2;
+  }
+  repeated PhoneNumber phone = 4;
+}
+
+
+//// cpp demo protos ///////
+//table filed  define
+message TableFiled
+{
+    xc.type.TypeDef.DataType field_type = 1;
+    string filed_name = 2;
+}
+
+// store one row table data
+message TableRowData{
+    repeated string value = 1;
+}
+
+message TwoDimensionTable
+{
+    int64 reqid = 1;
+    string task_id = 2; //任务标识
+    xc.type.TypeDef.TaskType task_type = 3;
+    string machine_id = 4; // 数据库机器编号
+    string db_name = 5;    //数据库名
+    string table_name = 6; //数据库表名称
+    int32 record_cnt = 7; //记录条数
+    int64 timestamp = 8;   //GMT 毫秒值
+    //business packs
+    repeated TableFiled fileds = 9;
+    repeated TableRowData rows = 10;
+}
