@@ -1,4 +1,5 @@
 /*
+ *  g++ -std=c++11 -Wall -O2 test_async_thread_perf.cpp  -lpthread -luv  -o async_test
  * test_async_thread_perf.cpp
  * 测试Async 加锁 发送的效率（进程间通信的方式）
  * 
@@ -10,6 +11,7 @@
 #include <string.h>
 #include <uv.h>
 #include <atomic>
+#include <mutex>
 #include <vector>
 #include <string>
 #include <chrono>
@@ -47,9 +49,6 @@ int64_t CurrentTimeMillis()
 }
 
 using namespace std;
-/**
- * g++ -std=c++11 -Wall -O2 test_async_thread.cpp  -lpthread -luv  -o async_test
- */
 
 int test_count = 1000000;
 uv_async_t async_hdl;
@@ -58,8 +57,9 @@ spinlock m_lock;
 
 void close_cb(uv_handle_t* handle);
 void on_async_cb(uv_async_t* handle);
-void another_thread(void* arg);
+void producer_thread(void* arg);
  
+
 void close_cb(uv_handle_t* handle)
 {
     printf("close the async handle!\n");
@@ -78,7 +78,7 @@ void on_async_cb(uv_async_t* handle)
     m_lock.unlock();
 
     total_consumer += tmp_data.size();
-    if (total_consumer > test_count - 4) {
+    if (total_consumer >= test_count) {
         auto end_time_ms = CurrentTimeMillis();
         printf("on_async_cb total cost %lld ms (from send).\n",  (end_time_ms - global_start_time_ms));
         printf("on_async_cb : total_consumer = %lld.\n", total_consumer);
@@ -106,8 +106,9 @@ void producer_thread(void* arg)
     int k = 0, success_cnt = 0;
     uv_thread_t id = uv_thread_self();
     printf("sub thread id:%lu.\n", id);
-  
-    global_start_time_ms = CurrentTimeMillis();
+    if (global_start_time_ms < 1) {
+        global_start_time_ms = CurrentTimeMillis();
+    }
     while(k < test_count)
     {
         int rc = DoAsync(k);
@@ -116,7 +117,7 @@ void producer_thread(void* arg)
         ++k;
     }
     auto end_time_ms = CurrentTimeMillis();
-    printf("send async : cost time %lld ms.\n", (end_time_ms - start_time_ms));
+    printf("send async : cost time %lld ms.\n", (end_time_ms - global_start_time_ms));
     printf("send async : k = %d, success_cnt = %d.\n", k, success_cnt);
 }
 
@@ -146,10 +147,42 @@ int main(int argc, char *argv[])
     //创建子线程,发送Async通知
     uv_thread_t thread;
     uv_thread_create(&thread, producer_thread, NULL);
+
+    // uv_thread_t thread2;
+    //uv_thread_create(&thread2, producer_thread, NULL);
  
     uv_run(uvloop, UV_RUN_DEFAULT);
     // 等待子线程完成
     uv_thread_join(&thread);
- 
+    //uv_thread_join(&thread2);
     return 0;
 }
+
+
+/* 启动一个线程
+*
+thread id:140110925088576.
+timer total_consumer = 0.
+sub thread id:140110899500800.
+send async : cost time 802 ms.
+send async : k = 10000000, success_cnt = 10000000.
+on_async_cb total cost 802 ms (from send).
+on_async_cb : total_consumer = 10000000.
+timer total_consumer = 10000000.
+*/
+
+
+/* 启动两个线程之后
+thread id:140555206666048.
+sub thread id:140555181078272.
+timer total_consumer = 0.
+sub thread id:140555172685568.
+send async : cost time 1675 ms.
+send async : k = 5000000, success_cnt = 5000000.
+send async : cost time 1754 ms.
+send async : k = 5000000, success_cnt = 5000000.
+on_async_cb total cost 1776 ms (from send).
+on_async_cb : total_consumer = 10000000.
+timer total_consumer = 10000000.
+timer total_consumer = 10000000.
+*/
