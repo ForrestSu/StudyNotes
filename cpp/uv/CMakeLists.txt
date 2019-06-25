@@ -53,3 +53,8 @@ target_include_directories(pipe_client PRIVATE ${add_includes})
 target_link_libraries(pipe_client ${add_libraries})
 
 
+add_executable(load_lib load_library.cpp)
+target_compile_definitions(load_lib PRIVATE ${add_defines})
+target_compile_options(load_lib PRIVATE ${add_cppflags})
+target_include_directories(load_lib PRIVATE ${add_includes})
+target_link_libraries(load_lib ${add_libraries})
