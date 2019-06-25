@@ -24,18 +24,20 @@ int main(int argc, char **argv)
         fprintf(stderr, "uv_dlopen(%s) error: %s\n", str_so_name, uv_dlerror(m_hdl));
         return 1;
     }
+    // 2 get entry address
     EntryGetServiceFactory entry = NULL;
     rc = uv_dlsym(m_hdl, "GetServiceFactory", (void **) &entry);
     if (rc == -1) {
         fprintf(stderr, "uv_dlsym(%s) can't find factory entry! error: <%s>.\n", str_so_name, uv_dlerror(m_hdl));
         return 1;
     }
+    // 3 call c function: entry()
     Factory* factoryInstancePtr = entry();
     if (factoryInstancePtr == NULL) {
         fprintf(stderr, "error:  factoryInstancePtr is null!\n");
         return 1;
     }
-    // 3 close shared library
+    // 4 close shared library
     uv_dlclose(m_hdl);
     printf("exit!\n");
     return rc;
