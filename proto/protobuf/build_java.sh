@@ -1,12 +1,12 @@
 #!/bin/bash
 
-output_dir="./gen_java"
+output_dir="../gen_java"
+cd protos
 result=`ls *.proto`
 
 if [ ! -d "$output_dir" ];then
     mkdir $output_dir
 fi
-
 for var in $result
 do
     echo $var

@@ -1,0 +1,24 @@
+# eclipse
+.settings
+.project
+.cproject
+.classpath
+
+#idea
+.idea
+
+#vscode
+.vscode
+
+# vs projects
+.sln
+.vs
+
+#CMake
+build
+
+# protobuf
+gen_java
+gen_cpp
+target
+

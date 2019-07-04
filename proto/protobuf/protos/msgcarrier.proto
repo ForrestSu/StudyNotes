@@ -1,0 +1,66 @@
+syntax = "proto3";
+package xc.msgcarrier;
+option java_package = "com.xunce.pb";
+option java_outer_classname = "MsgCarrierCls";
+
+import public "typedef.proto";
+message MsgCarrier
+{
+    enum MsgType
+    {
+        UNKNOWN = 0;
+        HEARTBEAT = 1;
+
+        //msg_type
+        SNAPSHOT = 10;
+        //for ADC ctp
+        PUB_STORAGE_DATA = 11; //落库数据
+        //quote
+        INDEX = 12; // 指数行情
+        TRANSACTIONS = 16; // 逐笔成交
+
+        // 查询码表 (预作废)
+        QUERY_CODE_TABLES_JSON = 20;
+        QUERY_TODAY_IPO = 21;
+        QUERY_SNAPSHOTS = 22;
+
+        // derived data
+        DD_TIMELINE = 30;
+
+        // 查询码表
+        QUERY_CODE_TABLES = 100;
+        // 查询分钟线
+        QUERY_DD_TIMELINE = 120;
+
+        //router-dealer pub
+        SERVICESTATE = 202; //服务状态
+        // for calibrate the delay
+        TIMESYSNCTASK = 300; //设备时间同步任务
+        TIMESYSNCREQ = 301; //设备时间同步请求
+    }
+
+    int64 seqno = 1;
+    int64 msgid = 2;
+    MsgType type = 3;
+    bytes message = 4;
+    string jwt = 5;         // json Web Token
+    bool authenticated = 6; // jwt authenticate status
+    string routerid = 7;    // for
+    bool iscompress = 8;
+
+    //for ADC
+    int64 timestampMs = 9;	// 时间戳(毫秒)
+    int64 reqtimestampMs = 11;	// 原始请求时间戳(毫秒)
+}
+
+message MsgCarriers
+{
+    repeated bytes items = 1;
+}
+
+message Error
+{
+    bytes msg = 1;
+    int64 reqid = 2;
+    xc.type.TypeDef.ErrorType errortype = 3;
+}

@@ -6,11 +6,16 @@ if [ -n "$1" ]; then
     predir=`pwd`
     cd  "$1"
 fi
+if [ ! -d "protos" ];then
+    echo "ERROR: dir <protos> is not exists!"
+    exit 1
+fi
 
 ##### work #####
+cd protos
 result=`ls *.proto`
 suffix=".proto"
-output_dir="./gen_cpp"
+output_dir="../gen_cpp"
 cpp_suffix=".pb.cc"
 cpp_suffix_replace=".pb.cpp"
 

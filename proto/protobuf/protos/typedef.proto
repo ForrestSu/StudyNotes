@@ -1,0 +1,59 @@
+syntax = "proto3";
+package xc.type;
+option java_package = "com.xunce.pb";
+option java_outer_classname = "TypeDefCls";
+
+message TypeDef
+{
+
+    enum TaskType {
+       TASK_UNKNOWN = 0;
+       TASK_TIMER = 1;
+       TASK_FILE = 2;
+    }
+
+    enum DataType
+    {
+        // option allow_alias = true;
+        TYPE_UNKNOWN = 0;
+        TYPE_INT = 1;
+        TYPE_INT64 = 2;
+        TYPE_UINT = 3;
+        TYPE_UINT64 = 4;
+        TYPE_DOUBLE = 5;
+        TYPE_FLOAT = 6;
+        TYPE_BOOL = 7;
+        TYPE_STRING = 8;
+    }
+    enum Exchange
+    {
+        EX_UNKNOWN = 0;
+        EX_SH    = 1; // 上交所 SSE
+        EX_SZ    = 2; // 深交所 SZSE
+        EX_CFFEX = 3; // 中金所
+        EX_SHFE  = 5; // 上期所
+        EX_ZCE   = 6; // 郑商所
+        EX_DCE   = 7; // 大商所
+        EX_HK    = 8; // 香港联交所 HKEX
+        EX_SEHK  = 9; // 沪港通
+        EX_SZHK  = 10;// 深港通
+    }
+
+    enum ErrorType
+    {
+        ERROR_UNKNOWN = 0;
+        ERROR_UNSUPPOTED = 1;
+    }
+    enum RunState
+    {
+        UNEXECUTED = 0; //未执行
+        EXECUTING = 1; //执行中
+        EXECFAILURE = 2;//执行失败
+        COMPLETED = 3;//完成
+        QUEUEWAITING = 4; //队列等待
+        HEARTBEATTIMEOUT = 5; //心跳超时
+        SUCCESS = 6; //成功
+        SOURCETIMEOUT = 7; //源数据超时
+    }
+}
+
