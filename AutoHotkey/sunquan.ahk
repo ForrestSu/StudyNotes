@@ -25,9 +25,9 @@
 
 ; Insert the current date time when I tell her "Ctrl+T"
 ^T::
-    FormatTime, CurrentDateTime, , // yyyy-MM-dd HH:mm:ss+08:00
+    FormatTime, CurrentDateTime,, yyyy-MM-dd HH:mm:ss
     Clipboard := CurrentDateTime
-    SendInput ^v{Return} ; It seems that "^V{Return}" not works as expected.
+    SendInput ^v{Return}   ; It seems that "^V{Return}" not works as expected.
 Return
 
 
