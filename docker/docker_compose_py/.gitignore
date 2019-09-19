@@ -1,0 +1,7 @@
+# Spyder project settings
+.spyderproject
+.spyproject
+
+
+# mypy
+.mypy_cache/
