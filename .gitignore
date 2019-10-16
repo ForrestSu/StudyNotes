@@ -33,10 +33,13 @@ build
 *.out
 *.app
 
+# Eclipse
+
 .settings
 .project
 .cproject
 /Default/
 
+.tmp
 
 Ongoing-Study
