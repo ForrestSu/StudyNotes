@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CLEAN MARKUP = GOOD KARMA.
+      Hi source code lover,
+
+      you're a curious person and a fast learner ;)
+      Let's make something beautiful together. Contribute on Github:
+      https://github.com/jlantunez/webslides
+
+      Thanks,
+      @jlantunez.
+    -->
+
+    <!-- SEO -->
+    <title>tuned-adm 性能调优分析</title>
+    <meta name="description" content="tuned-adm 性能调优参数分析">
+
+    <!-- URL CANONICAL -->
+    <link rel="canonical" href="https://talk.linuxtoy.org/tuned-adm-slides/index.html">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,700i%7CMaitree:200,300,400,600,700&amp;subset=latin-ext" rel="stylesheet">
+
+    <!-- CSS Base -->
+    <link rel="stylesheet" type="text/css" media="all" href="static/css/base.css">
+
+    <!-- CSS Colors -->
+    <link rel="stylesheet" type="text/css" media="all" href="static/css/colors.css">
+
+    <!-- Optional - CSS SVG Icons (Font Awesome) -->
+    <link rel="stylesheet" type="text/css" media="all" href="static/css/svg-icons.css">
+
+    <!-- SOCIAL CARDS (ADD YOUR INFO) -->
+
+    <!-- FACEBOOK -->
+    <meta property="og:url" content="https://talk.linuxtoy.org/tuned-adm-slides/index.html"> <!-- EDIT -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="tuned-adm 性能调优分析" />
+    <meta property="og:description" content="tuned-adm 性能调优参数分析"> <!-- EDIT -->
+    <meta property="og:updated_time" content="2017-04-06T16:27:50"> <!-- EDIT -->
+    <meta property="og:image" content="https://webslides.static/images/share-karma.jpg" > <!-- EDIT -->
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="429">
+
+    <!-- TWITTER -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@linuxtoy"> <!-- EDIT -->
+    <meta name="twitter:creator" content="@linuxtoy"> <!-- EDIT -->
+    <meta name="twitter:title" content="tuned-adm 性能调优分析"> <!-- EDIT -->
+    <meta name="twitter:description" content="tuned-adm 性能调优参数分析"> <!-- EDIT -->
+    <meta name="twitter:image" content="https://webslides.static/images/share-karma.jpg"> <!-- EDIT -->
+
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" sizes="16x16" href="static/images/favicons/favicon.png">
+    <link rel="shortcut icon" sizes="32x32" href="static/images/favicons/favicon-32.png">
+    <link rel="apple-touch-icon icon" sizes="76x76" href="static/images/favicons/favicon-76.png">
+    <link rel="apple-touch-icon icon" sizes="120x120" href="static/images/favicons/favicon-120.png">
+    <link rel="apple-touch-icon icon" sizes="152x152" href="static/images/favicons/favicon-152.png">
+    <link rel="apple-touch-icon icon" sizes="180x180" href="static/images/favicons/favicon-180.png">
+    <link rel="apple-touch-icon icon" sizes="192x192" href="static/images/favicons/favicon-192.png">
+
+    <!-- Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#333333">
+  </head>
+  <body>
+    <header role="banner">
+      <nav role="navigation">
+        <p class="logo"><a href="https://linuxtoy.org" title="LinuxTOY">LinuxTOY</a></p>
+        <ul>
+          <li class="github">
+            <a rel="external" href="https://github.com/LinuxTOY/linuxtoy.org" title="Github">
+              <svg class="fa-github">
+                <use xlink:href="#fa-github"></use>
+              </svg>
+              <em>LinuxTOY</em>
+            </a>
+          </li>
+          <li class="twitter">
+            <a rel="external" href="https://twitter.com/linuxtoy" title="Twitter">
+              <svg class="fa-twitter">
+                <use xlink:href="#fa-twitter"></use>
+              </svg>
+              <em>@linuxtoy</em>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main role="main">
+      <article id="webslides" class="vertical">
+
+        <!-- Quick Guide
+          - Each parent <section> in the <article id="webslides"> element is an individual slide.
+          - Vertical sliding = <article id="webslides" class="vertical">
+          - <div class="wrap"> = container 1200px / <div class="wrap size-50"> = 600px;
+        -->
+
+        <section class="bg-apple">
+          <!--.wrap = container 1200px -->
+          <div class="wrap aligncenter zoomIn">
+            <h1 class="text-landing">tuned-adm 性能调优分析</h1>
+            <p class="text-intro">
+            徐小东 (a.k.a toy) <br />
+            (xuxiaodong@deepin.com) <br />
+            2017.04
+            </p>
+          </div>
+          <!-- .end .wrap -->
+        </section>
+        <section>
+          <div class="wrap size-50 fadeIn slow">
+          <h3 class="content-center">主题大纲</h3>
+          <hr>
+            <div class="toc">
+              <ol>
+                <li>
+                  <a href="#slide=3">
+                    <span class="chapter">tuned-adm 简介</span>
+                    <span class="toc-page">03</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#slide=4">
+                    <span class="chapter">性能调优方向</span>
+                    <span class="toc-page">04</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#slide=9">
+                    <span class="chapter">性能调优场景</span>
+                    <span class="toc-page">09</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#slide=15">
+                    <span class="chapter">性能调优分析</span>
+                    <span class="toc-page">15</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#slide=49">
+                    <span class="chapter">总结</span>
+                    <span class="toc-page">49</span>
+                  </a>
+                </li>
+              </ol>
+            </div>
+            <!-- end .toc -->
+          </div>
+          <!-- .end .wrap -->
+        </section>
+        <section>
+          <div class="wrap size-50 fadeInUp">
+            <h1>tuned-adm 简介</h1>
+            <p class="text-intro">RHEL 自带的性能调优工具，通过针对特定应用场景提供配置 (profile) 来改善系统性能</p>
+            <p class="content-center"><a class="button" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Performance_Tuning_Guide/sect-Red_Hat_Enterprise_Linux-Performance_Tuning_Guide-Tool_Reference-tuned_adm.html">tuned-adm 官方主页</a></p>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>性能调优方向</h1>
+            <ul class="description">
+              <li><span class="text-label">CPU:</span> governor、energy_perf_bias、min_perf_pct</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>性能调优方向</h1>
+            <ul class="description">
+              <li><span class="text-label">CPU:</span> governor、energy_perf_bias、min_perf_pct</li>
+              <li><span class="text-label">内存:</span> transparent_hugepages、vm.{dirty_ratio,dirty_background_ratio,swappiness}</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>性能调优方向</h1>
+            <ul class="description">
+              <li><span class="text-label">CPU:</span> governor、energy_perf_bias、min_perf_pct</li>
+              <li><span class="text-label">内存:</span> transparent_hugepages、vm.{dirty_ratio,dirty_background_ratio,swappiness}</li>
+              <li><span class="text-label">磁盘:</span> readahead、scheduler、kernel.sched_{min_granularity_ns,wakeup_granularity_ns,migration_cost_ns}</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>性能调优方向</h1>
+            <ul class="description">
+              <li><span class="text-label">CPU:</span> governor、energy_perf_bias、min_perf_pct</li>
+              <li><span class="text-label">内存:</span> transparent_hugepages、vm.{dirty_ratio,dirty_background_ratio,swappiness}</li>
+              <li><span class="text-label">磁盘:</span> readahead、scheduler、kernel.sched_{min_granularity_ns,wakeup_granularity_ns,migration_cost_ns}</li>
+              <li><span class="text-label">文件系统 (ext4):</span> relatime/noatime、barrier/nobarrier、discard/nodiscard</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>性能调优方向</h1>
+            <ul class="description">
+              <li><span class="text-label">CPU:</span> governor、energy_perf_bias、min_perf_pct</li>
+              <li><span class="text-label">内存:</span> transparent_hugepages、vm.{dirty_ratio,dirty_background_ratio,swappiness}</li>
+              <li><span class="text-label">磁盘:</span> readahead、scheduler、kernel.sched_{min_granularity_ns,wakeup_granularity_ns,migration_cost_ns}</li>
+              <li><span class="text-label">文件系统 (ext4):</span> relatime/noatime、barrier/nobarrier、discard/nodiscard</li>
+              <li><span class="text-label">网络:</span> net.ipv4.{tcp_rmem,tcp_wmem,udp_mem}、net.core.busy_{read,poll}、net.ipv4.tcp_fastopen</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-50 fadeInUp">
+            <h1>性能调优场景</h1>
+            <ol class="description">
+              <li>throughput-performance (侧重于吞吐量)</li>
+            </ol>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-50 fadeInUp">
+            <h1>性能调优场景</h1>
+            <ol class="description">
+              <li>throughput-performance (侧重于吞吐量)</li>
+              <li>latency-performance (侧重于低延迟)</li>
+            </ol>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-50 fadeInUp">
+            <h1>性能调优场景</h1>
+            <ol class="description">
+              <li>throughput-performance (侧重于吞吐量)</li>
+              <li>latency-performance (侧重于低延迟)</li>
+              <li>network-throughput (侧重于网络吞吐量)</li>
+            </ol>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-50 fadeInUp">
+            <h1>性能调优场景</h1>
+            <ol class="description">
+              <li>throughput-performance (侧重于吞吐量)</li>
+              <li>latency-performance (侧重于低延迟)</li>
+              <li>network-throughput (侧重于网络吞吐量)</li>
+              <li>network-latency (侧重于更低的网络延迟)</li>
+            </ol>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-50 fadeInUp">
+            <h1>性能调优场景</h1>
+            <ol class="description">
+              <li>throughput-performance (侧重于吞吐量)</li>
+              <li>latency-performance (侧重于低延迟)</li>
+              <li>network-throughput (侧重于网络吞吐量)</li>
+              <li>network-latency (侧重于更低的网络延迟)</li>
+              <li>virtual-host (侧重于优化虚拟主机)</li>
+            </ol>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-50 fadeInUp">
+            <h1>性能调优场景</h1>
+            <ol class="description">
+              <li>throughput-performance (侧重于吞吐量)</li>
+              <li>latency-performance (侧重于低延迟)</li>
+              <li>network-throughput (侧重于网络吞吐量)</li>
+              <li>network-latency (侧重于更低的网络延迟)</li>
+              <li>virtual-host (侧重于优化虚拟主机)</li>
+              <li>virtual-guest (侧重于优化虚拟客户机)</li>
+            </ol>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>CPU: governor</h1>
+            <p class="text-intro">CPU 时钟频率的管理模式</p>
+            <ul class="description">
+              <li>performance (性能)：强制 CPU 尽可能使用<strong>最高</strong>的时钟频率</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>CPU: governor</h1>
+            <p class="text-intro">CPU 时钟频率的管理模式</p>
+            <ul class="description">
+              <li>performance (性能)：强制 CPU 尽可能使用<strong>最高</strong>的时钟频率</li>
+              <li>powersave (省电)：强制 CPU 尽可能使用<strong>最低</strong>的时钟频率</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>CPU: governor</h1>
+            <p class="text-intro">CPU 时钟频率的管理模式</p>
+            <ul class="description">
+              <li>performance (性能)：强制 CPU 尽可能使用<strong>最高</strong>的时钟频率</li>
+              <li>powersave (省电)：强制 CPU 尽可能使用<strong>最低</strong>的时钟频率</li>
+              <li>ondemand (按需)：系统负载高时，CPU 使用<strong>最高</strong>的时钟频率；系统空闲时，CPU 使用<strong>最低</strong>的时钟频率</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>CPU: governor</h1>
+            <p class="text-intro">CPU 时钟频率的管理模式</p>
+            <ul class="description">
+              <li>performance (性能)：强制 CPU 尽可能使用<strong>最高</strong>的时钟频率</li>
+              <li>powersave (省电)：强制 CPU 尽可能使用<strong>最低</strong>的时钟频率</li>
+              <li>ondemand (按需)：系统负载高时，CPU 使用<strong>最高</strong>的时钟频率；系统空闲时，CPU 使用<strong>最低</strong>的时钟频率</li>
+              <li>userspace (用户态)：允许用户或用户态程序<strong>自行设置</strong>时钟频率</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>CPU: governor</h1>
+            <p class="text-intro">CPU 时钟频率的管理模式</p>
+            <ul class="description">
+              <li>performance (性能)：强制 CPU 尽可能使用<strong>最高</strong>的时钟频率</li>
+              <li>powersave (省电)：强制 CPU 尽可能使用<strong>最低</strong>的时钟频率</li>
+              <li>ondemand (按需)：系统负载高时，CPU 使用<strong>最高</strong>的时钟频率；系统空闲时，CPU 使用<strong>最低</strong>的时钟频率</li>
+              <li>userspace (用户态)：允许用户或用户态程序<strong>自行设置</strong>时钟频率</li>
+              <li>conservative (保守)：类似 ondemand，区别是它根据<strong>是否适合负载</strong>来调整时钟频率，而不是简单的在最高和最低之间选择</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>查询 governor (目前支持)</h1>
+            <pre>
+$ cpupower --cpu all frequency-info --governors
+analyzing CPU 0:
+available cpufreq governors: performance powersave
+
+analyzing CPU 1:
+available cpufreq governors: performance powersave
+
+analyzing CPU 2:
+available cpufreq governors: performance powersave
+
+analyzing CPU 3:
+available cpufreq governors: performance powersave
+            </pre>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-70 fadeInUp">
+            <h1>查询 governor (正在使用)</h1>
+            <pre>
+$ cpupower --cpu all frequency-info --policy
+analyzing CPU 0:
+current policy: frequency should be within 400 MHz and 3.20 GHz.
+The governor "powersave" may decide which speed to use
+within this range.
+
+analyzing CPU 1:
+current policy: frequency should be within 400 MHz and 3.20 GHz.
+The governor "powersave" may decide which speed to use
+within this range.
+
+analyzing CPU 2:
+current policy: frequency should be within 400 MHz and 3.20 GHz.
+The governor "powersave" may decide which speed to use
+within this range.
+
+analyzing CPU 3:
+current policy: frequency should be within 400 MHz and 3.20 GHz.
+The governor "powersave" may decide which speed to use
+within this range.
+            </pre>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-70 fadeInUp">
+            <h1>设置 governor</h1>
+            <p class="text-intro">方法一：</p>
+            <pre>
+$ sudo cpupower frequency-set --governor performance
+            </pre>
+            <p class="text-intro">方法二：</p>
+            <pre>
+/sys/devices/system/cpu/cpu*/cpufreq/scaling_available_governors
+/sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+            </pre>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>CPU: energy_perf_bias</h1>
+            <p class="text-intro">Energy Performance Bias（能耗/性能偏差）</p>
+            <ul class="description">
+              <li>performance（性能）：处理器不为了节省能源而牺牲性能</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>CPU: energy_perf_bias</h1>
+            <p class="text-intro">Energy Performance Bias（能耗/性能偏差）</p>
+            <ul class="description">
+              <li>performance（性能）：处理器不为了节省能源而牺牲性能</li>
+              <li>normal（正常）：处理器为了可能明显的节省能源而容许牺牲较小的性能</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>CPU: energy_perf_bias</h1>
+            <p class="text-intro">Energy Performance Bias（能耗/性能偏差）</p>
+            <ul class="description">
+              <li>performance（性能）：处理器不为了节省能源而牺牲性能</li>
+              <li>normal（正常）：处理器为了可能明显的节省能源而容许牺牲较小的性能</li>
+              <li>powersave（省电）：处理器为了最有效率的节省能源而接受可能明显的性能减少</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>查询 energy_perf_bias</h1>
+            <pre>
+$ sudo x86_energy_perf_policy -r
+cpu0: 0x0000000000000006            # 代表 normal
+cpu1: 0x0000000000000006
+cpu2: 0x0000000000000006
+cpu3: 0x0000000000000006
+
+NOTE:
+{kernel-source}/tools/power/x86/x86_energy_perf_policy
+            </pre>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>设置 energy_perf_bias</h1>
+            <pre>
+$ sudo x86_energy_perf_policy performance
+cpu0  msr0x1b0 0x0000000000000006 -> 0x0000000000000000
+cpu1  msr0x1b0 0x0000000000000006 -> 0x0000000000000000
+cpu2  msr0x1b0 0x0000000000000006 -> 0x0000000000000000
+cpu3  msr0x1b0 0x0000000000000006 -> 0x0000000000000000
+            </pre>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-50 fadeInUp">
+            <h1>CPU: min_perf_pct</h1>
+            <p class="text-intro">Intel 处理器 P-State（Performance States，性能状态） 的最小值，指最大化性能级别的百分比</p>
+            <ul class="description">
+              <li>max_perf_pct：P-State 的最大值，指可用性能的百分比</li>
+              <li>num_pstates：硬件支持的 P-State 数</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-50 fadeInUp">
+            <h1>查询 min_perf_pct</h1>
+            <pre>
+/sys/devices/system/cpu/intel_pstate
+            </pre>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>内存: transparent_hugepages</h1>
+            <p class="text-intro">Transparent Huge Pages (透明巨页)，内核自动分配巨页给进程</p>
+            <ul class="description">
+              <li>always：尝试为任意进程分配巨页</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>内存: transparent_hugepages</h1>
+            <p class="text-intro">Transparent Huge Pages (透明巨页)，内核自动分配巨页给进程</p>
+            <ul class="description">
+              <li>always：尝试为任意进程分配巨页</li>
+              <li>madvise：利用 madvise() 系统调用只为个别进程分配巨页</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>内存: transparent_hugepages</h1>
+            <p class="text-intro">Transparent Huge Pages (透明巨页)，内核自动分配巨页给进程</p>
+            <ul class="description">
+              <li>always：尝试为任意进程分配巨页</li>
+              <li>madvise：利用 madvise() 系统调用只为个别进程分配巨页</li>
+              <li>never：禁用透明巨页</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-70 fadeInUp">
+            <h1>查询/设置 transparent_hugepages</h1>
+            <pre>
+cat /sys/kernel/mm/transparent_hugepage/enabled             # 查看
+echo "always" > /sys/kernel/mm/transparent_hugepage/enabled # 设置
+            </pre>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-50 fadeInUp">
+            <h1>内存: vm.*</h1>
+            <p class="text-intro"></p>
+            <ul class="description">
+              <li>vm.dirty_background_ratio: 设置 dirty pages 开始后台回写时的百分比</li>
+              <li>vm.dirty_ratio: 设置 dirty pages 开始回写时的百分比</li>
+              <li>vm.swappiness: 控制从物理内存换出到交换空间的相对权重，取值为 0 到
+100。更低的值导致避免交换，而更高的值导致尝试使用交换空间</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-50 fadeInUp">
+            <h1>磁盘: readahead</h1>
+            <p class="text-intro">读取文件列表的内容到内存，以便当实际需要时可从缓存读取</p>
+            <pre>
+/sys/block/sda/queue/read_ahead_kb
+
+NOTE: 替换块设备 sda
+            </pre>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>磁盘: scheduler</h1>
+            <p class="text-intro">I/O 调度器</p>
+            <ul class="description">
+              <li>cfq：Completely Fair Queueing（完全公平队列）调度器，它将进程分为实时、尽其所能和空闲三个独立的类别。实时类别的进程先于尽其所能类别的进程执行，而尽其所能类别的进程总是在空闲类别的进程之前执行。默认情况下分配到尽其所能类别的进程</li>
+              <li>deadline：尝试为 I/O 请求提供有保障的延迟。适用于大多数情况，尤其是读取操作比写入操作更频繁的请求</li>
+              <li>noop：执行简单的 FIFO（先进先出）调度算法，并实现请求合并。适合使用快速存储的 CPU 计算密集型系统</li>
+              <li>blk-mq：即 Multi-Queue Block IO Queuing Mechanism（多队列块 IO 队列机制），它利用具有多核的 CPU 来映射 I/O 队列到多队列。与传统的 I/O 调度器相比，通过多线程及多个 CPU 核心来分发任务，从而能够加速读写操作。该调度器适合高性能的闪存设备（如 PCIe SSD）</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-70 fadeInUp">
+            <h1>查看/设置 scheduler</h1>
+            <pre>
+cat /sys/block/sda/queue/scheduler                # 查看当前使用的 I/O 调度器
+echo "deadline" > /sys/block/sda/queue/scheduler  # 临时将 I/O 调度器设为 deadline
+追加 elevator=deadline 内核参数                     # 永久设置
+
+scsi_mod.use_blk_mq=y dm_mod.use_blk_mq=y         # 注意启用 blk-mq 后，将禁用所有别的 I/O 调度器
+
+NOTE: 替换块设备 sda
+            </pre>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-70 fadeInUp">
+            <h1>kernel.sched_*</h1>
+            <ul class="description">
+              <li>kernel.sched_min_granularity_ns: 针对 CPU 计算密集型任务设置调度器的最小抢占粒度</li>
+              <li>kernel.sched_wakeup_granularity_ns: 设置调度器的唤醒粒度，这将延迟抢占效应，并减少过度调度</li>
+              <li>kernel.sched_migration_cost_ns: 调度器认为迁移的进程“cache hot”因而更少可能被重新迁移的总时间</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>文件系统 (ext4)</h1>
+            <p class="text-intro">挂载参数</p>
+            <ul class="description">
+              <li>relatime/noatime: 对于如何更新 inode 访问时间的策略</li>
+              <li>barrier=<0|1>(barrier/nobarrier): 该选项开启或禁用在 jbd 代码中使用写入 barrier</li>
+              <li>discard/nodiscard: 控制是否执行 discard/TRIM 命令，对 SSD 设备有用</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>网络: net.ipv4.{tcp_rmem,tcp_wmem,udp_mem}</h1>
+            <ul class="description">
+              <li>tcp_rmem：用于 autotuning 函数，设置 TCP 接收缓冲的最小、默认及最大字节数</li>
+              <li>tcp_wmen：用于 autotuning 函数，设置 TCP 发送缓冲的最小、默认及最大字节数</li>
+              <li>udp_mem：设置 UDP 队列的页数</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>网络: net.core.busy_{read,poll}</h1>
+            <ul class="description">
+              <li>net.core.busy_read: 针对 socket 读取设置低延迟 busy poll 超时</li>
+              <li>net.core.busy_poll: 针对 poll 和 select 设置低延迟 busy poll 超时</li>
+              <li>net.ipv4.tcp_fastopen: TCP 快速打开（TFO）</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-50 fadeInUp">
+            <h1>common</h1>
+            <p class="text-intro"></p>
+            <pre>
+governor=performance
+energy_perf_bias=performance
+min_perf_pct=100
+transparent_hugepages=always *
+readahead=>4096
+scheduler=deadline *
+
+* 视情况而定
+            </pre>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>throughput-performance</h1>
+            <p class="text-intro"></p>
+            <pre>
+kernel.sched_min_granularity_ns = 10000000
+kernel.sched_wakeup_granularity_ns = 15000000
+vm.dirty_ratio = 40
+vm.dirty_background_ratio = 10
+vm.swappiness = 10
+            </pre>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>latency-performance</h1>
+            <p class="text-intro"></p>
+            <pre>
+kernel.sched_min_granularity_ns = 10000000
+kernel.sched_migration_cost_ns = 5000000
+vm.dirty_ratio = 10
+vm.dirty_background_ratio = 3
+vm.swappiness = 10
+            </pre>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>network-throughput</h1>
+            <p class="text-intro">在 throughput-performance 基础上增加网络调优</p>
+            <pre>
+kernel.sched_min_granularity_ns = 10000000
+kernel.sched_wakeup_granularity_ns = 15000000
+vm.dirty_ratio = 40
+vm.dirty_background_ratio = 10
+vm.swappiness = 10
+net.ipv4.tcp_rmem = 4096        87380   16777216
+net.ipv4.tcp_wmem = 4096        16384   16777216
+net.ipv4.udp_mem = 3145728      4194304 16777216
+            </pre>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>network-latency</h1>
+            <p class="text-intro">在 latency-performance 基础上增加网络调优</p>
+            <pre>
+transparent_hugepages=never
+kernel.sched_min_granularity_ns = 10000000
+kernel.sched_migration_cost_ns = 5000000
+vm.dirty_ratio = 10
+vm.dirty_background_ratio = 3
+vm.swappiness = 10
+net.core.busy_read = 50
+net.core.busy_poll = 50
+net.ipv4.tcp_fastopen = 3
+            </pre>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-50 fadeInUp">
+            <h1>virtual-host</h1>
+            <pre>
+kernel.sched_min_granularity_ns = 10000000
+kernel.sched_wakeup_granularity_ns = 15000000
+kernel.sched_migration_cost_ns = 5000000
+vm.dirty_ratio = 40
+vm.dirty_background_ratio = 5
+vm.swappiness = 10
+            </pre>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-50 fadeInUp">
+            <h1>virtual-guest</h1>
+            <pre>
+kernel.sched_min_granularity_ns = 10000000
+kernel.sched_wakeup_granularity_ns = 15000000
+vm.dirty_ratio = 30
+vm.dirty_background_ratio = 10
+vm.swappiness = 30
+            </pre>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>总结</h1>
+            <p class="text-intro"></p>
+            <ul class="description">
+              <li>scheduler: 相比 cfq 的表现，deadline 无论在读还是在写上都更有优势。对于具有固态存储设备的场景而言，blk-mq 值得一试</li>
+              <li>kernel.sched_min_granularity_ns: 比默认值调得更大一些，推荐设为 10000000（1 毫秒），从而稍微延迟抢占，具有更好的性能表现。该参数值适合上述所有场景</li>
+              <li>kernel.sched_wakeup_granularity_ns: 比默认值调大，从而避免过度调度，推荐设为 15000000（1.5 毫秒）。仅在注重吞吐量的情况下设置该参数，低延迟的情况不要设置</li>
+              <li>kernel.sched_migration_cost_ns: 比默认值调大，从而减少任务的重新迁移，推荐设为 5000000（0.5 毫秒）。仅在注重低延迟的情况下设置该参数，高吞吐量的情况不要设置</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-60 fadeInUp">
+            <h1>总结 (续)</h1>
+            <p class="text-intro"></p>
+            <ul class="description">
+              <li>vm.dirty_ratio: 高吞吐量的情况一般设置为 40，低延迟的情况通常设置为 10</li>
+              <li>vm.dirty_background_ratio: 高吞吐量的情况可设为 10，低延迟的情况可设为 3</li>
+              <li>vm.swappiness: 一般设为 10，从而避免过多 swap 交换。仅在作为虚拟客户机的情况下可设高一些（30）</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-50 fadeInUp">
+            <h1>总结 (续)</h1>
+            <p class="text-intro">毫无疑问 noatime 应该作为默认挂载参数，nobarrier 在写上的性能优势十分明显，discard 适合 SSD 的场合</p>
+            <pre>
+noatime
+nobarrier
+discard
+            </pre>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-50 fadeInUp">
+            <h1>总结 (续)</h1>
+            <p class="text-intro">仅在注重网络吞吐量的情况下调节</p>
+            <pre>
+net.ipv4.tcp_rmem
+net.ipv4.tcp_wmem
+net.ipv4.udp_mem
+            </pre>
+            <p class="text-intro">仅在注重网络低延迟的情况下调节</p>
+            <pre>
+net.core.busy_read
+net.core.busy_poll
+net.ipv4.tcp_fastopen
+            </pre>
+          </div>
+        </section>
+        <section>
+          <div class="wrap size-50 fadeInUp">
+            <h1>参考链接</h1>
+            <p class="text-intro"></p>
+            <ul class="description">
+              <li><a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Power_Management_Guide/cpufreq_governors.html">Using CPUfreq Governors</a></li>
+              <li><a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Performance_Tuning_Guide/sect-Red_Hat_Enterprise_Linux-Performance_Tuning_Guide-Tool_Reference-x86_energy_perf_policy.html">x86_energy_perf_policy</a></li>
+              <li><a href="https://www.kernel.org/doc/Documentation/cpu-freq/intel-pstate.txt">intel-pstate</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Readahead">readahead</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Advanced_Configuration_and_Power_Interface">Advanced Configuration and Power Interface</a></li>
+              <li><a href="https://lwn.net/Articles/508865/">TCP Fast Open: expediting web services</a></li>
+              <li><a href="https://www.kernel.org/doc/Documentation/filesystems/ext4.txt">ext4</a></li>
+              <li><a href="https://www.thomas-krenn.com/en/wiki/Linux_Multi-Queue_Block_IO_Queueing_Mechanism_(blk-mq)">blk-mq</a></li>
+            </ul>
+          </div>
+        </section>
+
+      </article>
+    </main>
+    <!--main-->
+
+    <!-- Required -->
+    <script src="static/js/webslides.js"></script>
+    <!-- Autoslide 5 seconds. If you don't want autoslide, remove: {autoslide: 5000} -->
+    <script>
+      window.ws = new WebSlides();
+    </script>
+
+    <!-- OPTIONAL - svg-icons.js (fontastic.me - Font Awesome as svg icons) -->
+    <script defer src="static/js/svg-icons.js"></script>
+
+  </body>
+</html>
