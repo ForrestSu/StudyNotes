@@ -1,0 +1,88 @@
+# 迅策 2019-10-25 19:45:02
+
+https://translate.google.cn/?tl=ar#view=home&op=translate&sl=zh-CN&tl=en&text=%E5%88%B8%E9%9D%A2%E6%80%BB%E9%A2%9D | Google 翻译
+https://leetcode-cn.com/problemset/algorithms/?utm_source=LCUS&utm_medium=ip_redirect_o_uns&utm_campaign=transfer2china | 题库 - 力扣 (LeetCode) 全球极客挚爱的技术成长平台
+https://blog.csdn.net/jiangwlee/article/details/50774561 | Spark的几个基本概念：Driver和Job，Stage - JwLee的专栏 - CSDN博客
+https://blog.csdn.net/wdlpzce/article/details/82822282 | Apache Spark处理大数据入门，看这一篇就够了 - wdlpzce的博客 - CSDN博客
+https://github.com/scylladb/seastar | GitHub - scylladb/seastar: High performance server-side application framework
+https://github.com/chaoyongzhou/Knowledge-Sharing | GitHub - chaoyongzhou/Knowledge-Sharing: studying and sharing
+https://github.com/lzj112/Simple_BlockChain/blob/master/Merkle_Tree/Merkle_Tree_test1/tree.hpp | Simple_BlockChain/tree.hpp at master · lzj112/Simple_BlockChain · GitHub
+http://purecpp.org/detail?id=2121 | purecpp - a cool open source modern c++ community
+http://purecpp.org/detail?id=2099 | purecpp - a cool open source modern c++ community
+https://blog.csdn.net/wetest_tencent/article/details/53204724 | 老司机乱谈『代码之美』 ——不要束缚了自己前进的脚步 - wetest_tencent的博客 - CSDN博客
+https://en.cppreference.com/w/cpp/language/parameter_pack | Parameter pack(since C++11) - cppreference.com
+https://zookeeper.apache.org/doc/r3.3.3/zookeeperProgrammers.html | ZooKeeper Programmer's Guide
+https://github.com/nodejs/node-v0.x-archive/issues/3355 | node 0.7.9 changed event loop semantics · Issue #3355 · nodejs/node-v0.x-archive · GitHub
+https://blog.csdn.net/lijinqi1987/article/details/78861259 | zookeeper C API 完整运行实例 - 小麒麟的成长之路 - CSDN博客
+https://www.cnblogs.com/jimcsharp/p/8358271.html | ZooKeeper的安装与部署 - jimcsharp - 博客园
+https://www.cnblogs.com/haippy/archive/2013/02/21/2920280.html | Zookeeper C API 指南 - Haippy - 博客园
+https://www.cnblogs.com/haippy/archive/2013/02/24/2924570.html | Zookeeper C API 指南八(Zookeeper C API 应用示例) - Haippy - 博客园
+https://www.cnblogs.com/haippy/archive/2013/02/24/2923608.html | Zookeeper C API 指南六(异步 API 介绍) - Haippy - 博客园
+https://blog.csdn.net/lpshoucsd1/article/details/8984762 | zookeeper C API实例 - lpshoucsd1的专栏 - CSDN博客
+http://zookeeper.apache.org/doc/r3.3.4/zookeeperProgrammers.html#sc_ZooKeeperAccessControl | ZooKeeper Programmer's Guide
+https://izualzhy.cn/archive.html | archive
+https://valine.js.org/jekyll.html | 在Jekyll中使用 | Valine
+https://izualzhy.cn/zookeeper-c-api-introduction | zookeeper C API介绍
+https://izualzhy.cn/books.html | 在读和读过的书
+https://izualzhy.cn/zookeeper-c-api-introduction | zookeeper C API介绍
+http://purecpp.org/detail?id=2114 | purecpp - a cool open source modern c++ community
+http://purecpp.org/detail?id=2114 | purecpp - a cool open source modern c++ community
+http://purecpp.org/detail?id=2096 | purecpp - a cool open source modern c++ community
+https://github.com/hnes/libaco | GitHub - hnes/libaco: A blazing fast and lightweight C asymmetric coroutine library 💎 ⛅🚀⛅🌞
+https://github.com/digoal/blog/blob/master/201509/20150916_01.md | blog/20150916_01.md at master · digoal/blog · GitHub
+https://github.com/lballabio/QuantLib | GitHub - lballabio/QuantLib: The QuantLib C++ library
+http://morningcoffee.io/killing-a-process-and-all-of-its-descendants.html | Killing a process and all of its descendants - Igor Sarcevic
+https://devconnected.com/syslog-the-complete-system-administrator-guide/ | Syslog : The Complete System Administrator Guide – devconnected
+https://github.com/elixirschool/elixirschool | GitHub - elixirschool/elixirschool: Premier destination to learn and master the Elixir programming language
+https://elixirschool.com/en/lessons/basics/basics/#integers | Basics · Elixir School
+https://github.com/h4cc/awesome-elixir#actors | GitHub - h4cc/awesome-elixir: A curated list of amazingly awesome Elixir and Erlang libraries, resources and shiny things. Updates:
+https://github.com/nanomsg/nng/blob/master/demo/rest/server.c | nng/server.c at master · nanomsg/nng · GitHub
+https://www.jianshu.com/p/2704cd87200a | eventfd 入门介绍 - 简书
+https://en.wikipedia.org/wiki/QuantLib
+https://www.cnblogs.com/JeffreyZhao/archive/2009/05/11/a-simple-actor-model-implementation.html | ActorLite：一个轻量级Actor模型实现（上） - Jeffrey Zhao - 博客园
+https://github.com/antirez/redis | GitHub - antirez/redis: Redis is an in-memory database that persists on disk. The data model is key-value, but many different kind of values are supported: Strings, Lists, Sets, Sorted Sets, Hashes, Streams, HyperLogLogs, Bitmaps.
+https://en.wikipedia.org/wiki/AVL_tree
+https://www.geeksforgeeks.org/avl-tree-set-1-insertion/ | AVL Tree | Set 1 (Insertion) - GeeksforGeeks
+https://alrightchiu.github.io/SecondRound/red-black-tree-introjian-jie.html | Red Black Tree: Intro(簡介)
+https://alrightchiu.github.io/SecondRound/red-black-tree-introjian-jie.html | Red Black Tree: Intro(簡介)
+https://www.cnblogs.com/linbingdong/p/6442673.html | 分布式一致性算法：Raft 算法（论文翻译） - lzslbd - 博客园
+
+http://www.ruanyifeng.com/blog/2019/09/curl-reference.html | curl 的用法指南 - 阮一峰的网络日志
+https://github.com/ruanyf/free-books | ruanyf/free-books: 互联网上的免费书籍
+https://www.yuque.com/ksco/ogg7um | golangbot系列教程翻译 · 语雀
+https://www.yuque.com/ksco/ogg7um/nsqpve | 第三部分：变量 · 语雀
+https://golang.org/ref/spec#Slice_expressions
+https://github.com/cfenollosa/os-tutorial/blob/master/01-bootsector-barebones/README.md | os-tutorial/README.md at master · cfenollosa/os-tutorial
+http://192.168.0.22:11080/sunquan/quantlib_demo/tree/master | Files | master | sunquan / quantlib_demo | GitLab
+
+https://www.cnblogs.com/qicosmos/p/4325949.html?spm=a2c4e.11153940.blogcont612488.29.799d6774zf9RHx | 泛化之美--C++11可变模版参数的妙用 - qicosmos(江南) - 博客园
+
+https://www.baidu.com/s?ie=UTF-8&wd=pthread_spin_lock | pthread_spin_lock_百度搜索
+https://blog.csdn.net/u013713010/article/details/53404626 | 自旋锁pthread_spinlock_t的一个特点 - u013713010的专栏 - CSDN博客
+https://blog.csdn.net/I_am_JoJo/article/details/7592298 | pthread_spin_lock 自旋锁 - JoJo-追求卓越~ - CSDN博客
+https://www.baidu.com/s?wd=multi_index_container&pn=10&oq=multi_index_container&tn=baiduhome_pg&ie=utf-8&rsv_idx=2&rsv_pq=a18979e80006381b&rsv_t=32e3lj%2B3uTH9JcJ3ay4JHkWdRIt8WfE%2BBHzHfJiHb3J5h9vOXNZx6AawlBcjbhJ6M%2F0H | multi_index_container_百度搜索
+https://www.google.com/search?source=hp&ei=JKBSXO6tPIvTvATbkpOwBw&q=multi_index_container&btnK=Google+Search&oq=multi_index_container&gs_l=psy-ab.3..0l5j0i30l5.1395.1395..1893...0.0..0.350.350.3-1......0....2j1..gws-wiz.....0.eGAHxT8zicM | multi_index_container - Google Search
+https://www.boost.org/doc/libs/1_41_0/libs/multi_index/doc/tutorial/basics.html | Boost.MultiIndex文档 - 教程 - 基础知识 - 1.41.0
+https://gist.github.com/david-grs/7519f9b37941626a673926e498317305 | examples around multi_index_container
+
+https://www.cnblogs.com/bitkevin/p/5724410.html | 两种高效的事件处理模型：Reactor模式和Proactor模式 - bitkevin - 博客园
+https://github.com/scylladb/seastar | scylladb/seastar: High performance server-side application framework
+https://en.wikipedia.org/wiki/Futures_and_promises | Futures and promises - Wikipedia
+https://dmerej.info/blog/post/cmake-visual-studio-and-the-command-line/ | CMake, Visual Studio, and the Command Line • Dimitri Merejkowsky
+https://github.com/zeromq/libzmq/issues/3300 | Subscribe to the same topic multiple times, send a subscription message to the publisher, and when I unsubscribe the topic one by one, only send the last unsubscribe message? · Issue #3300 · zeromq/libzmq
+https://github.com/hnes/libaco | GitHub - hnes/libaco: A blazing fast and lightweight C asymmetric coroutine library 💎 ⛅🚀⛅🌞
+https://github.com/hnes/libaco#synopsis | GitHub - hnes/libaco: A blazing fast and lightweight C asymmetric coroutine library 💎 ⛅🚀⛅🌞
+https://github.com/hnes/libaco | GitHub - hnes/libaco: A blazing fast and lightweight C asymmetric coroutine library 💎 ⛅🚀⛅🌞
+https://github.com/hnes/libaco/blob/master/README_zh.md | libaco/README_zh.md at master · hnes/libaco
+https://blog.csdn.net/davion_zhang/article/details/51325843 | cmake使用整理 - 风之伤 - CSDN博客
+https://www.cnblogs.com/embedded-linux/p/5943652.html | linux中likely()和unlikely() - yuxi_o - 博客园
+https://www.ibm.com/developerworks/cn/xml/x-cn-yamlintro/ | YAML 简介
+https://www.cnblogs.com/autophyte/p/6147751.html | 使用CMake构建复杂工程 - 百草神农 - 博客园
+https://blog.csdn.net/czyt1988/article/details/43636473 | C++11 lambda表达式在for_each和transform算法下的使用 - 尘中远的程序开发记录 - CSDN博客
+https://www.cnblogs.com/kidsitcn/p/5339382.html | git rebase vs git merge详解 - 世有因果知因求果 - 博客园
+https://github.com/myd7349/Ongoing-Study/blob/master/cpp/split_args.h | Ongoing-Study/split_args.h at master · myd7349/Ongoing-Study
+https://mp.weixin.qq.com/s/GzNbCxpPK_iQgYj5WyXEUg | 数据：逍遥游
+http://www.ruanyifeng.com/blog/2017/12/blockchain-tutorial.html | 区块链入门教程 - 阮一峰的网络日志
+http://www.ruanyifeng.com/blog/2018/01/cryptocurrency-tutorial.html | 加密货币的本质 - 阮一峰的网络日志
+https://www.google.com/search?safe=active&source=hp&ei=CQISXMTqE8KZ8wXIkLKoDg&q=Kafka%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97.epub&btnK=Google+Search&oq=Kafka%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97.epub&gs_l=psy-ab.3...667.667..986...0.0..0.282.562.2-2......0....1j2..gws-wiz.....0.LgujGCYy17g | Kafka权威指南.epub - Google Search
+https://download.csdn.net/download/u011669700/10257571 | Kafka权威指南.epub-CSDN下载
