@@ -1,8 +1,10 @@
+.DS_Store
+
 # Prerequisites
 *.d
 
 #CMake
-build
+build/
 
 # Compiled Object files
 *.slo
