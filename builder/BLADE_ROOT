@@ -1,0 +1,11 @@
+
+cc_config(
+   warnings = [
+   '-Wwarning=missing-include-dirs',
+   ],
+)
+
+proto_library_config(
+  protoc='/usr/bin/protoc',
+  protobuf_libs=['#protobuf'],
+)
