@@ -36,12 +36,11 @@ build/
 *.app
 
 # Eclipse
-
-.settings
+.settings/
 .project
 .cproject
 /Default/
+.pydevproject
 
-.tmp
 
 Ongoing-Study
