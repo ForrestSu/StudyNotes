@@ -3,6 +3,10 @@
 
 #include "proto/protobuf3_json/test-protobuf.pb.h"
 
+/**
+ * reference: https://stackoverflow.com/questions/34906305/protocol-buffer3-and-json/44291335#44291335
+ */
+
 int main()
 {
   std::string json_string;

@@ -1,6 +1,16 @@
 /* 
- *url:http://www.cnblogs.com/yuuyuu/p/5103744.html
+ *url: http://www.cnblogs.com/yuuyuu/p/5103744.html
  *
+ */
+
+/**
+ * terminal1
+ * >./app 127.0.0.1 8000 
+ * 
+ * terminal2 
+ * nc 127.0.0.1 8000
+ * > helloworld
+ * >
  */
 
 #include <stdio.h>
@@ -53,18 +63,18 @@ void addfd_to_epoll(int epoll_fd, int fd, int epoll_type, int block_type)
     epoll_ctl(epoll_fd, EPOLL_CTL_ADD, fd, &ep_event);
 }
 
-/* LT处理流程 */
-void epoll_lt(int sockfd)
+/* LT 处理流程 */
+void epoll_level_trigger(int sockfd)
 {
-    char buffer[MAX_BUFFER_SIZE];
+    char buffer[MAX_BUFFER_SIZE+1];
     int ret;
-
-    memset(buffer, 0, MAX_BUFFER_SIZE);
+ 
     printf("开始recv()...\n");
+    memset(buffer, 0, MAX_BUFFER_SIZE+1);
     ret = recv(sockfd, buffer, MAX_BUFFER_SIZE, 0);
     printf("ret = %d\n", ret);
     if (ret > 0)
-        printf("收到消息:%s, 共%d个字节\n", buffer, ret);
+        printf("recv %d bytes <%s>.\n", ret, buffer);
     else
     {
         if (ret == 0)
@@ -78,19 +88,19 @@ void epoll_lt(int sockfd)
 /* 带循环的ET处理流程 */
 void epoll_et_loop(int sockfd)
 {
-    char buffer[MAX_BUFFER_SIZE];
+    char buffer[MAX_BUFFER_SIZE+1];
     int ret;
 
     printf("带循环的ET读取数据开始...\n");
     while (1)
     {
-        memset(buffer, 0, MAX_BUFFER_SIZE);
+        memset(buffer, 0, MAX_BUFFER_SIZE+1);
         ret = recv(sockfd, buffer, MAX_BUFFER_SIZE, 0);
         if (ret == -1)
         {
             if (errno == EAGAIN || errno == EWOULDBLOCK)
             {
-                printf("循环读完所有数据！！！\n");
+                printf("errno = %d <%s>, 循环读完所有数据！！！\n", errno, strerror(errno));
                 break;
             }
             close(sockfd);
@@ -103,7 +113,7 @@ void epoll_et_loop(int sockfd)
             break;
         }
         else
-            printf("收到消息:%s, 共%d个字节\n", buffer, ret);
+             printf("[et_loop] recv %d bytes <%s>.\n", ret, buffer);
     }
     printf("带循环的ET处理结束！！！\n");
 }
@@ -112,15 +122,15 @@ void epoll_et_loop(int sockfd)
 /* 不带循环的ET处理流程，比epoll_et_loop少了一个while循环 */
 void epoll_et_nonloop(int sockfd)
 {
-    char buffer[MAX_BUFFER_SIZE];
+    char buffer[MAX_BUFFER_SIZE+1];
     int ret;
 
     printf("不带循环的ET模式开始读取数据...\n");
-    memset(buffer, 0, MAX_BUFFER_SIZE);
+    memset(buffer, 0, MAX_BUFFER_SIZE+1);
     ret = recv(sockfd, buffer, MAX_BUFFER_SIZE, 0);
     if (ret > 0)
     {
-        printf("收到消息:%s, 共%d个字节\n", buffer, ret);
+        printf("[et_none_loop] recv %d bytes <%s>.\n", ret, buffer);
     }
     else
     {
@@ -168,17 +178,17 @@ void epoll_process(int epollfd, struct epoll_event *events, int number, int sock
             if (epoll_type == EPOLL_LT)    
             {
                 printf("============================>水平触发开始...\n");
-                epoll_lt(newfd);
+                epoll_level_trigger(newfd);
             }
             else if (epoll_type == EPOLL_ET)
             {
                 printf("============================>边缘触发开始...\n");
 
                 /* 带循环的ET模式 */
-                // epoll_et_loop(newfd);
+                epoll_et_loop(newfd);
 
                 /* 不带循环的ET模式 */
-                epoll_et_nonloop(newfd);
+                // epoll_et_nonloop(newfd);
             }
         }
         else
@@ -222,54 +232,55 @@ int create_socket(const char *ip, const int port_number)
     return sockfd;
 }
 
-/* main函数 */
+
 int main(int argc, const char *argv[])
 {
     if (argc < 3)
     {
-        fprintf(stderr, "usage:%s ip_address port_number\n", argv[0]);
+        fprintf(stderr, "usage: %s 127.0.0.1 8000\n", argv[0]);
         exit(1);
     }
 
-    int sockfd, epollfd, number;
+    int sockfd, epoll_fd;
 
     sockfd = create_socket(argv[1], atoi(argv[2]));
     struct epoll_event events[MAX_EPOLL_EVENTS];
 
     /* linux内核2.6.27版的新函数，和epoll_create(int size)一样的功能，并去掉了无用的size参数 */
-    if ((epollfd = epoll_create1(0)) == -1)
+    if ((epoll_fd = epoll_create1(0)) == -1)
         err_exit("epoll_create1() error");
+
+    printf("sockfd == %d, epoll_fd == %d \n ", sockfd, epoll_fd);
 
     /* 以下设置是针对监听的sockfd，当epoll_wait返回时，必定有事件发生，
      * 所以这里我们忽略罕见的情况外设置阻塞IO没意义，我们设置为非阻塞IO */
 
     /* sockfd：非阻塞的LT模式 */
-    //addfd_to_epoll(epollfd, sockfd, EPOLL_LT, FD_NONBLOCK);
+    // addfd_to_epoll(epoll_fd, sockfd, EPOLL_LT, FD_NONBLOCK);
 
     /* sockfd：非阻塞的ET模式 */
-    addfd_to_epoll(epollfd, sockfd, EPOLL_ET, FD_NONBLOCK);
+    addfd_to_epoll(epoll_fd, sockfd, EPOLL_ET, FD_NONBLOCK);
 
-   
     while (1)
     {
-        number = epoll_wait(epollfd, events, MAX_EPOLL_EVENTS, -1);
-        if (number == -1)
+        int rc = epoll_wait(epoll_fd, events, MAX_EPOLL_EVENTS, -1);
+        if (rc == -1)
             err_exit("epoll_wait() error");
         else
         {
             /* 以下的LT，ET，以及是否阻塞都是是针对accept()函数返回的文件描述符，即函数里面的connfd */
 
             /* connfd:阻塞的LT模式 */
-            //epoll_process(epollfd, events, number, sockfd, EPOLL_LT, FD_BLOCK);
+            //epoll_process(epoll_fd, events, rc, sockfd, EPOLL_LT, FD_BLOCK);
 
             /* connfd:非阻塞的LT模式 */
-            //epoll_process(epollfd, events, number, sockfd, EPOLL_LT, FD_NONBLOCK);
+            // epoll_process(epoll_fd, events, rc, sockfd, EPOLL_LT, FD_NONBLOCK);
 
-            /* connfd:阻塞的Edege Triger模式 */
-            //epoll_process(epollfd, events, number, sockfd, EPOLL_ET, FD_BLOCK);
+            /* connfd:阻塞的 Edge Trigger 模式 */
+            // epoll_process(epoll_fd, events, rc, sockfd, EPOLL_ET, FD_BLOCK);
 
-            /* connfd:非阻塞的Edege Triger模式 */
-            epoll_process(epollfd, events, number, sockfd, EPOLL_ET, FD_NONBLOCK);
+            /* connfd:非阻塞的 Edge Trigger 模式 */
+            epoll_process(epoll_fd, events, rc, sockfd, EPOLL_ET, FD_NONBLOCK);
         }
         printf("poll..\n");
     }

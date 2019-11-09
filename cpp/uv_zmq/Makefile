@@ -5,7 +5,7 @@ COMPILE_PLATFORM := -m64
 INCLUDES := -I./inc
 LIBRARIES := -L../../../bin/linux  
 LIBRARIES += -lpthread -lzmq -luv 
-BIN =  uv_sock epoll_test
+BIN =  uv_sock
 
 all:$(BIN)
 
@@ -16,8 +16,5 @@ all:$(BIN)
 
 uv_sock: uv_zsock.o  uv_zsock_test.c
 		g++ $(COMPILE_PLATFORM) $(CFLAG) $(LIBRARIES)  $^ -o $@
-        
-epoll_test: epoll_lt_et.c
-		gcc  -Wall -g $<  -o  $@
 clean:
 		rm $(BIN) *.o 
