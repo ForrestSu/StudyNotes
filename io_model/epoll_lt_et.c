@@ -120,7 +120,7 @@ void epoll_et_loop(int sockfd)
 
 
 /* 不带循环的ET处理流程，比epoll_et_loop少了一个while循环 */
-void epoll_et_nonloop(int sockfd)
+void epoll_et_once(int sockfd)
 {
     char buffer[MAX_BUFFER_SIZE+1];
     int ret;
@@ -188,7 +188,7 @@ void epoll_process(int epollfd, struct epoll_event *events, int number, int sock
                 epoll_et_loop(newfd);
 
                 /* 不带循环的ET模式 */
-                // epoll_et_nonloop(newfd);
+                // epoll_et_once(newfd);
             }
         }
         else
