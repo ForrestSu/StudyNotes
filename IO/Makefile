@@ -15,5 +15,8 @@ app: epoll_lt_et.c
 aio_test: aio_sample.cpp
 		g++ -Wall -g -std=c++11 -lrt -laio  $< -o $@
 
+epoll_test: epoll_test.c
+		gcc -Wall -g $<  -o  $@
+
 clean:
 		rm $(BIN) *.o
