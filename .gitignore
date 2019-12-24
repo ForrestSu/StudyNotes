@@ -3,6 +3,11 @@
 # Prerequisites
 *.d
 
+# Office temp files
+*.~vsdx
+*.~docx
+*.~xlsx
+
 #CMake
 build/
 

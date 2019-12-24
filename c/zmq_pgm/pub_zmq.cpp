@@ -1,3 +1,9 @@
+/**
+ * wiki: https://en.wikipedia.org/wiki/Pragmatic_General_Multicast
+ * reference: https://tools.ietf.org/html/rfc3208
+ * local rfc3208:  docs/[PGM]-rfc3208.txt
+ */
+
 #include <errno.h>
 #include <string.h>
 #include <zmq.h>

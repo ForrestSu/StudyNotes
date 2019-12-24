@@ -1,3 +1,9 @@
+/**
+ * wiki: https://en.wikipedia.org/wiki/Pragmatic_General_Multicast
+ * reference: https://tools.ietf.org/html/rfc3208
+ * local rfc3208:  docs/[PGM]-rfc3208.txt
+ */
+
 #include <errno.h>
 #include <string.h>
 #include <zmq.h>
@@ -8,9 +14,9 @@
 
 int main(int argc, char *argv[])
 {
-    if (argc < 2) {
+    if (argc < 3) {
         printf("Please input: %s <address> <printOncePerN>\n", argv[0]);
-        printf("%s \"epgm://eth0;239.192.1.1:5555\" \n", argv[0]);
+        printf("%s \"epgm://eth0;239.192.1.1:5555\" 1000\n", argv[0]);
         return 0;
     }
     std::string saddr = argv[1];
@@ -46,7 +52,8 @@ int main(int argc, char *argv[])
         int is_more = zmq_msg_more(&message);
 
         assert(is_more == 1);
-        // printf("rc = %d, is_more = %d\n", rc, is_more);
+
+        int this_frame_idx = 1;
         while (is_more) {
             zmq_msg_close(&message);
             zmq_msg_init(&message);
@@ -55,12 +62,19 @@ int main(int argc, char *argv[])
                 printf("recv2 fail ! rc == %d, errno = %d\n", rc, errno);
                 break;
             }
+
             is_more = zmq_msg_more(&message);
-            assert(is_more == 0);
             std::string msg_data((char*) zmq_msg_data(&message), zmq_msg_size(&message));
 
-            if (iTotalRecv % printOncePerN == 1) {
+            if ((iTotalRecv % printOncePerN == 1) || this_frame_idx > 1) {
                 printf("[%ld], topic <%s>, data <%s>\n", iTotalRecv, topic.c_str(), msg_data.c_str());
+            }
+            //TODO judge have 3 frame?
+            if (is_more) {
+                this_frame_idx++;
+                printf("exception: bigger than 2 frame! this_frame_idx = %d.\n", this_frame_idx);
+            } else {
+                this_frame_idx = 0;
             }
         }
         iTotalRecv++;
