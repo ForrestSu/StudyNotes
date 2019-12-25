@@ -72,6 +72,7 @@ int main(int argc, char *argv[])
             //TODO judge have 3 frame?
             if (is_more) {
                 this_frame_idx++;
+                printf("[%ld], topic <%s>, rc=%d, data <%s>\n", iTotalRecv, topic.c_str(), rc, msg_data.c_str());
                 printf("exception: bigger than 2 frame! this_frame_idx = %d.\n", this_frame_idx);
             } else {
                 this_frame_idx = 0;
