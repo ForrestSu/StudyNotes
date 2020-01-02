@@ -1,14 +1,4 @@
 
-### build libzmq with OpenPGM ### 
-
-# $  yum install openpgm-devel
-# cmake -DWITH_OPENPGM=ON -DCMAKE_INSTALL_PREFIX=/usr ..
-
-## optional
-# skip test: -DBUILD_TESTS=OFF 
-# skip static lib:  -DBUILD_STATIC=OFF
-
-
 CXXFLAGS = -std=c++11 -g -Wall -O2 -flto
 LINK_SO = -lzmq
 

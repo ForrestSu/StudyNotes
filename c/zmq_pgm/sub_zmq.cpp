@@ -12,27 +12,57 @@
 #include <assert.h>
 #include <string>
 
+void set_options(void *skt, int rate)
+{
+    int rc = 0;
+    //rate is Kbit/s
+    rc = zmq_setsockopt(skt, ZMQ_RATE, &rate, sizeof(rate));
+    assert(rc == 0);
+
+    int recv_intal = 60000;
+    rc = zmq_setsockopt(skt, ZMQ_RECOVERY_IVL, &recv_intal, sizeof(recv_intal));
+    assert(rc == 0);
+
+    int recv_buffer = 4 * 1024 * 1024; //4MB
+    rc = zmq_setsockopt(skt, ZMQ_SNDBUF, &recv_buffer, sizeof(recv_buffer));
+    assert(rc == 0);
+    rc = zmq_setsockopt(skt, ZMQ_RCVBUF, &recv_buffer, sizeof(recv_buffer));
+    assert(rc == 0);
+
+    // water line
+    int hard_max_msg_size = 1000000000;
+    rc = zmq_setsockopt(skt, ZMQ_RCVHWM, &hard_max_msg_size, sizeof(hard_max_msg_size));
+    assert(rc == 0);
+    rc = zmq_setsockopt(skt, ZMQ_SNDHWM, &hard_max_msg_size, sizeof(hard_max_msg_size));
+    assert(rc == 0);
+}
+
 int main(int argc, char *argv[])
 {
-    if (argc < 3) {
-        printf("Please input: %s <address> <printOncePerN>\n", argv[0]);
-        printf("%s \"epgm://eth0;239.192.1.1:5555\" 1000\n", argv[0]);
+    if (argc < 4) {
+        printf("Please input: %s <address> <rate> <printOncePerN>\n", argv[0]);
+        printf("rate is Kbit/s, 默认是千兆网卡 10^6 = 1Gbit/s.\n");
+        printf("%s \"epgm://eth0;239.192.1.1:5555\" 1000000 1000\n", argv[0]);
         return 0;
     }
     std::string saddr = argv[1];
-    int printOncePerN = atoi(argv[2]);
+    int rate = atoi(argv[2]);
+    int printOncePerN = atoi(argv[3]);
 
     void *ctx = zmq_ctx_new();
     void *skt = zmq_socket(ctx, ZMQ_SUB);
-    int rc = zmq_connect(skt, saddr.c_str());
+
+    set_options(skt, rate);
+
+    std::string sub_topic = "test";
+    int rc = zmq_setsockopt(skt, ZMQ_SUBSCRIBE, sub_topic.c_str(), sub_topic.size());
+    assert(rc == 0);
+
+    rc = zmq_connect(skt, saddr.c_str());
     if (rc < 0) {
         printf("zmq_connect() rc = %d, <%s>\n", rc, strerror(errno));
         return 0;
     }
-
-    std::string sub_topic = "test";
-    rc = zmq_setsockopt(skt, ZMQ_SUBSCRIBE, sub_topic.c_str(), sub_topic.size());
-    assert(rc == 0);
 
     printf("sub %s, topic = <%s>\n", saddr.c_str(), sub_topic.c_str());
 
@@ -53,6 +83,7 @@ int main(int argc, char *argv[])
 
         assert(is_more == 1);
 
+        iTotalRecv++;
         int this_frame_idx = 1;
         while (is_more) {
             zmq_msg_close(&message);
@@ -78,7 +109,6 @@ int main(int argc, char *argv[])
                 this_frame_idx = 0;
             }
         }
-        iTotalRecv++;
         //simulate recv slowly
         //sleep(3);
     }
