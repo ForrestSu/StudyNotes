@@ -8,9 +8,6 @@
 *.~docx
 *.~xlsx
 
-#CMake
-build/
-
 # Compiled Object files
 *.slo
 *.lo
@@ -47,5 +44,10 @@ build/
 /Default/
 .pydevproject
 
+# Cmake
+build/
+
+# idea
+.idea/
 
 Ongoing-Study
