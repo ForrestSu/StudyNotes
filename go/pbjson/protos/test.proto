@@ -1,0 +1,16 @@
+syntax = "proto3";
+package example;
+
+enum Exchange
+{
+    EX_UNKNOWN = 0;
+    TYPE_SH = 1;
+    TYPE_SZ = 2;
+};
+
+message Test
+{
+    string label = 1;
+    Exchange type = 2;
+    repeated int64 reps = 3;
+}
