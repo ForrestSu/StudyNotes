@@ -1,94 +1,83 @@
-/*
-*1.shutdown -s -t 3600    1Ğ¡Ê±ºó¹Ø»ú shutdown  -a  È¡Ïû
-*2.±ÈÈçÄãµÄµçÄÔÒªÔÚ22:00¹Ø»ú£¬¿ÉÒÔÑ¡Ôñ¡°¿ªÊ¼¡úÔËĞĞ¡±£¬ÊäÈë¡°at 22:00 shutdown -s¡±£¬ÕâÑù*  µ½ÁË22µãµçÄÔ*   ¾Í»á³öÏÖ¡°ÏµÍ³¹Ø»ú¡±¶Ô»°¿ò£¬Ä¬ÈÏÓĞ30ÃëÖÓµÄµ¹¼ÆÊ±²¢ÌáÊ¾Äã±£´æ¹¤×÷.
-*
+/*â˜†ä¸çŸ¥é“å°±æ¥è¿™ï¼š------æˆ‘çš„çŸ¥è¯†å¤‡å¿˜å½•
+*0.google ip æ›´æ–°http://laod.cn/
+*1.pptä¸­æœ‰ä¸€ä¸ªæƒ…æ™¯æ¨¡å¼æè¦å¾ˆå¤šlogo
+*2.shutdown -s -t 3600    1å°æ—¶åå…³æœº shutdown  -a  å–æ¶ˆ
+*3.æ¯”å¦‚ä½ çš„ç”µè„‘è¦åœ¨22:00å…³æœºï¼Œå¯ä»¥é€‰æ‹©"å¼€å§‹â†’è¿è¡Œ"ï¼Œè¾“å…¥"at 22:00 shutdown -s"ï¼Œ
+*  è¿™æ ·åˆ°äº†22ç‚¹ç”µè„‘, å°±ä¼šå‡ºç°â€œç³»ç»Ÿå…³æœºâ€å¯¹è¯æ¡†ï¼Œé»˜è®¤æœ‰30ç§’é’Ÿçš„å€’è®¡æ—¶å¹¶æç¤ºä½ ä¿å­˜å·¥ä½œ.
 */
 
-
-/*ÏµÍ³Ä¬ÈÏµÄ Win ¿ì½İ¼ü£º
+/*ç³»ç»Ÿé»˜è®¤çš„ Win å¿«æ·é”®ï¼š
 * 
-*  1.  Win + E£º´ò¿ª×ÊÔ´¹ÜÀíÆ÷£»
-*  2.  Win + D£ºÏÔÊ¾×ÀÃæ£»
-*  3.  Win + F£º´ò¿ª²éÕÒ¶Ô»°¿ò£»
-*  4.  Win + R£º´ò¿ªÔËĞĞ¶Ô»°¿ò
-*  5.  Win + L£ºËø¶¨µçÄÔ£»
-*  6.  Win + PauseBreak£º´ò¿ªÏµÍ³ÊôĞÔ¶Ô»°¿ò£»
+*  1.  Win + Eï¼šæ‰“å¼€èµ„æºç®¡ç†å™¨ï¼›
+*  2.  Win + Dï¼šæ˜¾ç¤ºæ¡Œé¢ï¼›
+*  3.  Win + Fï¼šæ‰“å¼€æŸ¥æ‰¾å¯¹è¯æ¡†ï¼›
+*  4.  Win + Rï¼šæ‰“å¼€è¿è¡Œå¯¹è¯æ¡†
+*  5.  Win + Lï¼šé”å®šç”µè„‘ï¼›
+*  6.  Win + PauseBreakï¼šæ‰“å¼€ç³»ç»Ÿå±æ€§å¯¹è¯æ¡†ï¼›
 *
 */
-/* ÄÇÃ´ Ctrl¡¢Alt¡¢Shift ÔÚ AHK ÔõÃ´±íÊ¾
+
+/* é‚£ä¹ˆ Ctrlã€Altã€Shift åœ¨ AHK æ€ä¹ˆè¡¨ç¤º
 *
-*  1.Ctrl  µÄ·ûºÅÊÇ  ^
-*  2.Alt   µÄ·ûºÅÊÇ  !
-*  3.Shift µÄ·ûºÅÊÇ  +
-*  4.Win   µÄ·ûºÅÊÇ  #
+*  1.Ctrl  çš„ç¬¦å·æ˜¯  ^
+*  2.Alt   çš„ç¬¦å·æ˜¯  !
+*  3.Shift çš„ç¬¦å·æ˜¯  +
+*  4.Win   çš„ç¬¦å·æ˜¯  #
 */
 
 ; Insert the current date time when I tell her "Ctrl+T"
 ^T::
     FormatTime, CurrentDateTime,, yyyy-MM-dd HH:mm:ss
     Clipboard := CurrentDateTime
-    SendInput ^v{Return}   ; It seems that "^V{Return}" not works as expected.
+    SendInput ^v  ; It seems that "^V{Return}" not works as expected.
 Return
 
+^E::
+    FormatTime, CurrentDateTime,, yyyy-MM-ddTHH:mm:ss+08:00
+    Clipboard := CurrentDateTime
+    SendInput ^v  ; It seems that "^V{Return}" not works as expected.
+Return
 
-/*ÔËĞĞcmd
+/*è¿è¡Œcmd
 */
 ^!t::run   D:\Portable\cmder\Cmder.exe
-^!e::run   D:\sqtools\cmde
 
 
-
-/*ÔËĞĞ½ØÍ¼³ÌĞò
+/*è¿è¡Œæˆªå›¾ç¨‹åº
 */
 #a::run   C:\windows\system32\SnippingTool.exe
 
 
-/*ÔËĞĞvisios
+/*è¿è¡Œvisio
 */
 #v::Run  C:\Program Files\Microsoft Office\root\Office16\VISIO.EXE
 
-/* notepad++ 
+/* notepad++
 */
-#n::run   D:\Portable\Notepad++7.5\Notepadplus.exe
+#n::run   D:\Portable\Notepad++v7.7.1\Notepadplus.exe
 
 
-/* eclipse java  ±ÈÈç£º D:\eclipse\eclipse.exe -data  E:\workspace
+/* eclipse java  æ¯”å¦‚ï¼š D:\eclipse\eclipse.exe -data  E:\workspace
 */
 #j::run   D:\eclipse\eclipse.exe 
 
-/*  ÔËĞĞCodeBlocks  
-*/
-#c::Run   D:\Program Files (x86)\CodeBlocks\codeblocks.exe
 
-/*  ÔËĞĞQQ 
-*/
-#q::Run   D:\Program Files (x86)\Tencent\QQ\Bin\QQ.exe
-
-
-/*  ´ò¿ªÎÒµÄcsdn²©¿Í 
+/*  æ‰“å¼€æˆ‘çš„csdnåšå®¢
 */
 #y::Run  http://blog.csdn.net/sunquana
 
-
-
-/*  ´ò¿ª  google 
+/*  æ‰“å¼€  google
 */
 #g::Run https://www.google.com
-/*  ´ò¿ª  °Ù¶È 
+
+/*  æ‰“å¼€  ç™¾åº¦
 */
 #b::Run https://www.baidu.com
 
-/*  ´ò¿ª¶¹°ê  
+/*  æ‰“å¼€è±†ç“£
 */
 #s::Run https://www.douban.com/people/SQ_SZY/
 
-/*  ´ò¿ª¼òÊé 
+/*  æ‰“å¼€ç®€ä¹¦
 */
 #i::Run http://www.jianshu.com
-
-
-
-
-
-
-
