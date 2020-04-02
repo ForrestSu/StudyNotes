@@ -8,8 +8,8 @@
  * [root@be74e79168dd]~/sdk/builder/io_model# ./aio_test
  * #sizeof(aiocb) == 168 bytes, open fd = 3
  * #count = 109494, tmp_rc = 0 <Success>, EINPROGRESS...
- * #read 0 bytes! <hello>
- * #read 5 bytes! <hello>
+ * #read 5 bytes! errno = 0, data = <hello>
+ * #has read 5 bytes! <hello>
  */
 
 #include <cstdio>
@@ -30,8 +30,7 @@ void test_aio_sample() {
 		perror("fail open");
 		exit(1);
 	}
-	printf("sizeof(aio_cb) == %ld bytes, open fd = %d \n", sizeof(struct aiocb),
-			fd);
+	printf("sizeof(aio_cb) == %ld bytes, open fd = %d \n", sizeof(struct aiocb), fd);
 	/* Zero out the aiocb structure (recommended) */
 	memset((void*) &aio_cb_ptr, 0, sizeof(struct aiocb));
 
@@ -174,7 +173,7 @@ void test_aio_suspend() {
 
 
 /** AIO 结合信号 sigaction，进行通知 **/
-#ifdef 0
+#ifdef TEST_SIG
 void setup_io( ... )
 {
   int fd;
