@@ -82,13 +82,15 @@ inline void run(){
     });
 }
 
+inline void benchmark() {
+    // about 100 ns/op, 10^7 op/s
+    for (int i = 0; i < 10'000'000; i++) {
+        run();
+    }
+}
 
 int main()
 {
     run();
-//    about 100 ns/op, 10^7 op/s
-//    for(int i =0; i< 10'000'000; i++){
-//     run();
-//    }
     return 0;
 }
