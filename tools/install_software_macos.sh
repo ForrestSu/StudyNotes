@@ -39,6 +39,7 @@ macos_packages=(
     elixir
     erlang
     findutils
+    fd
     go     # google
     grpc
     protobuf
