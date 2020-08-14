@@ -33,7 +33,8 @@ macos_packages=(
     bazel
     cmake
     boost
-    bwm-ng
+    bwm-ng  # net tools 
+    nmap  
     iproute2mac
     c-ares
     elixir
@@ -60,8 +61,11 @@ macos_packages=(
 )
 
 cask_gui_tools=(
-    aria2gui  # download file 
+    aria2gui  # download file
+    anydesk
     copyq     # clipboard enhance
+    notion 
+    sequel-pro
 )
 
 brew install "${macos_packages[@]}" bochs hugo
