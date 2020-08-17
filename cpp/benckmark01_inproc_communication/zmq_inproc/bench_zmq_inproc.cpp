@@ -1,5 +1,5 @@
 /*
- * test_zmq_inproc_perf.cpp
+ * bench_zmq_inproc.cpp
  * 测试zmq inproc 发送接收效率, (取代传统的进程间通信带锁的方式)
  * 
  * Created on: 2019年03月14日
@@ -133,25 +133,31 @@ int main(int argc, char *argv[])
     }
     test_count = atoi(argv[1]);
 
+    //ZMQ_PAIR 只适合 1:1 的socket 通信
+    //如果是 1:n 这里可以使用 ZMQ_PULL + ZMQ_PUSH
+    //如果是  n:m 这里可以使用 ZMQ_ROUTER + ZMQ_DEALER
     void *context = zmq_ctx_new();
-    void *m_recv_sock = CreateSocket(context, ZMQ_PULL);
+    void *m_recv_sock = CreateSocket(context, ZMQ_PAIR);
     zmq_bind(m_recv_sock, "inproc://workers");
 
-    void *m_send_sock = CreateSocket(context, ZMQ_PUSH);
+    void *m_send_sock = CreateSocket(context, ZMQ_PAIR);
     int rc = zmq_connect(m_send_sock, "inproc://workers");
-    printf("connect rc = %d\n", rc);
+    printf("use ZMQ_PAIR! connect rc = %d\n",  rc);
     pthread_t tid;
     pthread_create(&tid, NULL, producer_routine, m_send_sock);
 
-    void *m_send_sock2 = CreateSocket(context, ZMQ_PUSH);
+    //启动生产者
+    start_consumer(m_recv_sock, test_count);
+
+    /*void *m_send_sock2 = CreateSocket(context, ZMQ_PUSH);
     rc = zmq_connect(m_send_sock2, "inproc://workers");
     pthread_t tid2;
     pthread_create(&tid2, NULL, producer_routine, m_send_sock2);
     //启动生产者
-    start_consumer(m_recv_sock, test_count*2);
+    start_consumer(m_recv_sock, test_count*2);*/
 
     pthread_join(tid, NULL);
-    pthread_join(tid2, NULL);
+    //pthread_join(tid2, NULL);
     //  We never get here, but clean up anyhow
     zmq_close(m_send_sock);
     zmq_close(m_recv_sock);
@@ -212,9 +218,9 @@ void * CreateSocket(void* context, int type)
 connect rc = 0
 start send thread!
 last recv 0x12345678, nbytes 8!
- zmq_inproc_recv : cost time 2738 ms.
+ zmq_inproc_recv : cost time 2200 ms.
 zmq_inproc_recv : test_count = 10000000, success_cnt = 10000000.
 zmq_inproc_recv : fail_count 339851 , fail_count_eagain = 0.
-zmq_inproc_send : cost time 2738 ms.
+zmq_inproc_send : cost time 2200 ms.
 zmq_inproc_send : k = 10000000, success_cnt = 10000000.
  */

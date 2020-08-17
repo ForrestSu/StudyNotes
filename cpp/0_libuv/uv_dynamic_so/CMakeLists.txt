@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
-project(uv_demo)
+project(uv_dynamic_so)
 
 if(ADC_LINK_DIRS)
   link_directories(${ADC_LINK_DIRS})
@@ -39,22 +39,10 @@ else()
   list(APPEND add_libraries pthread uv)
 endif()
 
-add_executable(pipe_svr pipe_svr.c)
-target_compile_definitions(pipe_svr PRIVATE ${add_defines})
-target_compile_options(pipe_svr PRIVATE ${add_cppflags})
-target_include_directories(pipe_svr PRIVATE ${add_includes})
-target_link_libraries(pipe_svr ${add_libraries})
+add_executable(uv_dynamic_so load_library.cpp)
+target_compile_definitions(uv_dynamic_so PRIVATE ${add_defines})
+target_compile_options(uv_dynamic_so PRIVATE ${add_cppflags})
+target_include_directories(uv_dynamic_so PRIVATE ${add_includes})
+target_link_libraries(uv_dynamic_so ${add_libraries})
 
 
-add_executable(pipe_client pipe_client.c)
-target_compile_definitions(pipe_client PRIVATE ${add_defines})
-target_compile_options(pipe_client PRIVATE ${add_cppflags})
-target_include_directories(pipe_client PRIVATE ${add_includes})
-target_link_libraries(pipe_client ${add_libraries})
-
-
-add_executable(load_lib load_library.cpp)
-target_compile_definitions(load_lib PRIVATE ${add_defines})
-target_compile_options(load_lib PRIVATE ${add_cppflags})
-target_include_directories(load_lib PRIVATE ${add_includes})
-target_link_libraries(load_lib ${add_libraries})

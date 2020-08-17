@@ -32,8 +32,8 @@ int main(int argc, char **argv)
         return 1;
     }
     // 3 call c function: entry()
-    Factory* factoryInstancePtr = entry();
-    if (factoryInstancePtr == NULL) {
+    Factory* factoryPtr = entry();
+    if (factoryPtr == NULL) {
         fprintf(stderr, "error:  factoryInstancePtr is null!\n");
         return 1;
     }
