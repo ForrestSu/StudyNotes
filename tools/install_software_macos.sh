@@ -61,6 +61,7 @@ macos_packages=(
 )
 
 cask_gui_tools=(
+    wireshark
     aria2gui  # download file
     anydesk
     copyq     # clipboard enhance
