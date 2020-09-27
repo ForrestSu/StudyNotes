@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# sunquan update at 202-06-11 22:59
+# sq remove boost pkgs at 2020-09-27 17:19;
+# sunquan update at 202-06-11 22:59;
+
 basic_tools=(
     ascii
     dos2unix
@@ -32,7 +34,6 @@ macos_packages=(
     automake
     bazel
     cmake
-    boost
     bwm-ng  # net tools 
     nmap  
     iproute2mac
@@ -57,7 +58,6 @@ macos_packages=(
     sqlite
     tinyxml2 # config
     yaml-cpp
-    zeromq
 )
 
 cask_gui_tools=(
