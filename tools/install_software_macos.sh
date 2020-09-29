@@ -67,6 +67,7 @@ cask_gui_tools=(
     copyq     # clipboard enhance
     notion 
     sequel-pro
+    kafka-tool
 )
 
 brew install "${macos_packages[@]}" asciinema bochs hugo
