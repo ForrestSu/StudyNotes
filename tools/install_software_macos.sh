@@ -19,13 +19,13 @@ basic_tools=(
     node
     p7zip
     parallel
-    python
     readline
     tmux
     tree
     unrar
     watch
     wget
+    python
 )
 
 macos_packages=(
@@ -69,7 +69,7 @@ cask_gui_tools=(
     sequel-pro
 )
 
-brew install "${macos_packages[@]}" bochs hugo
+brew install "${macos_packages[@]}" asciinema bochs hugo
 
 brew cask install  "${cask_gui_tools[@]}"
 
