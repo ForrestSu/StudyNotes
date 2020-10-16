@@ -5,6 +5,7 @@
 
 basic_tools=(
     ascii
+    cloc
     dos2unix
     gdb
     gdbm
