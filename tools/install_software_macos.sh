@@ -63,12 +63,10 @@ macos_packages=(
 
 cask_gui_tools=(
     wireshark
+    iina
     aria2gui  # download file
-    anydesk
-    copyq     # clipboard enhance
     notion 
     sequel-pro
-    kafka-tool
 )
 
 brew install "${macos_packages[@]}" asciinema bochs hugo
