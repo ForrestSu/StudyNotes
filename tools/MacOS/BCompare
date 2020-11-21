@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Usage:
+# (1) $ cd "/Applications/Beyond Compare.app/Contents/MacOS/"
+# (2) $ mv BCompare BCompare.real
+# (3)    cp current file into "/Applications/Beyond Compare.app/Contents/MacOS/"
+# (4) $ chmod +x BCompare
+
+rm "/Users/$(whoami)/Library/Application Support/Beyond Compare/registry.dat"
+
+"`dirname "$0"`"/BCompare.real $@
+
