@@ -4,13 +4,13 @@
 #include <cstring>
 using namespace std;
 
-#define DEST_V 5000
-#define MAX_V  6000
+#define DEST_V 8500
+#define MAX_V  9900
 
 /**
  * 1 比如报销金额为5000, 凑满5000金额的最小的发票选取方案
  */
-struct DP{
+struct DP {
     int value;//当前背包的总价值
     int select_value;//最后选取的一个物品的价值
 } dp[MAX_V + 1];
@@ -49,21 +49,24 @@ int main() {
 
     init();
     /**
-     *  from 2020.03.30 to 2019.04.05
+     *  from 2020.12.25 to 2019.04.05
      */
-    vector<int> items = { 1530, 3344, 1953, 2360, 2093, 2218, 2064, 2329, 2727, 1542, 1300, 1790, 1760, 1574, 1530 };
-    printf("items.size() = %lld\n", items.size());
+    vector<int> items = {2132, 1483, 1290, 2093, 2218, 2064, 2329, 2727, 1542, 1790, 1760, 1574 };
+    printf("items.size() = %lu\n", items.size());
     for (int id = 0; id < (int) items.size(); ++id) {
         zero_one_pack(items[id]);
     }
 
+    bool isFind = false;
     for (int i = DEST_V; i <= MAX_V; ++i) {
         if (dp[i].value > 0) {
-            printf("minimum money = %d.\n", dp[i].value);
+            printf("money: %.2f, Minimum solution = %.2f.\n", DEST_V/100.0, dp[i].value/100.0);
             printf("the plan is:\n");
             recursive_print_plan(dp[i].value);
-            puts("OK!");
+            isFind = true;
             break;
         }
     }
+    puts(isFind ? "OK!": "can't find the plan!");
+    return 0;
 }
