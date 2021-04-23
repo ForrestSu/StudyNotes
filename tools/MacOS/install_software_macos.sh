@@ -62,11 +62,16 @@ macos_packages=(
 )
 
 cask_gui_tools=(
-    wireshark
-    iina
     aria2gui  # download file
-    notion 
+    iina
+    notion
+    typora
+    # mysql-client
     sequel-pro
+    # tools
+    wireshark
+    postman
+    http-toolkit
 )
 
 brew install "${macos_packages[@]}" asciinema bochs hugo
