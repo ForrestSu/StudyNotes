@@ -15,6 +15,7 @@ basic_tools=(
     htop
     iftop
     iperf
+    iperf3
     nasm
     nghttp2
     node
