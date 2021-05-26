@@ -44,6 +44,7 @@ macos_packages=(
     erlang
     findutils
     fd
+    upx
     go     # google
     grpc
     protobuf
