@@ -28,6 +28,7 @@ basic_tools=(
     watch
     wget
     python
+    gdu
 )
 
 macos_packages=(
