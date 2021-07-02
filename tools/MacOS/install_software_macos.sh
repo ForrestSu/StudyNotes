@@ -73,8 +73,8 @@ cask_gui_tools=(
     sequel-pro
     # tools
     wireshark
+    charles
     postman
-    http-toolkit
 )
 
 brew install "${macos_packages[@]}" asciinema bochs hugo
