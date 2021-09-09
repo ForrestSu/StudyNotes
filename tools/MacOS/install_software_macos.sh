@@ -28,7 +28,9 @@ basic_tools=(
     watch
     wget
     python
+    # disk usage
     gdu
+    dust
 )
 
 macos_packages=(
