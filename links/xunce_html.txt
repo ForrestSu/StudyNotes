@@ -1,7 +1,5 @@
 # 迅策 2019-10-25 19:45:02
 
-https://translate.google.cn/?tl=ar#view=home&op=translate&sl=zh-CN&tl=en&text=%E5%88%B8%E9%9D%A2%E6%80%BB%E9%A2%9D | Google 翻译
-https://leetcode-cn.com/problemset/algorithms/?utm_source=LCUS&utm_medium=ip_redirect_o_uns&utm_campaign=transfer2china | 题库 - 力扣 (LeetCode) 全球极客挚爱的技术成长平台
 https://blog.csdn.net/jiangwlee/article/details/50774561 | Spark的几个基本概念：Driver和Job，Stage - JwLee的专栏 - CSDN博客
 https://blog.csdn.net/wdlpzce/article/details/82822282 | Apache Spark处理大数据入门，看这一篇就够了 - wdlpzce的博客 - CSDN博客
 https://github.com/scylladb/seastar | GitHub - scylladb/seastar: High performance server-side application framework

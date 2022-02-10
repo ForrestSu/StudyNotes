@@ -39,8 +39,8 @@ macos_packages=(
     automake
     bazel
     cmake
-    bwm-ng  # net tools 
-    nmap  
+    bwm-ng  # net tools
+    nmap
     iproute2mac
     c-ares
     elixir
@@ -79,7 +79,7 @@ cask_gui_tools=(
     postman
 )
 
-brew install "${macos_packages[@]}" asciinema bochs hugo
+brew install "${macos_packages[@]}" asciinema hugo
 
 brew cask install  "${cask_gui_tools[@]}"
 
