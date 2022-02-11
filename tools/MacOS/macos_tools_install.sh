@@ -12,6 +12,8 @@ basic_tools=(
     gettext
     gflags
     git
+    # use GNU sed
+    gsed
     htop
     iftop
     iperf
