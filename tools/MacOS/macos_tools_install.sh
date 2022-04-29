@@ -79,6 +79,8 @@ cask_gui_tools=(
     wireshark
     charles
     postman
+    # gif recorder
+    licecap
 )
 
 brew install "${macos_packages[@]}" asciinema hugo
