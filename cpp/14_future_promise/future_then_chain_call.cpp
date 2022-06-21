@@ -51,7 +51,7 @@ public:
     void then(Func, Enable);
 
     template<typename Func>
-    void then(Func &&func, std::enable_if_t<std::is_same<std::result_of_t<Func(T&&)>, void>::value, void*> = nullptr) {
+    void then(Func &&func, std::enable_if_t<std::is_void< std::result_of_t<Func(T&&)> >::value, void*> = nullptr) {
         //typename std::result_of_t<Func(T&&)> MYtype;
         std::cout << "v1: void" << std::endl;
         func(10);
