@@ -33,6 +33,10 @@ basic_tools=(
     # disk usage
     gdu
     dust
+    # firewall
+    lulu
+    # system monitor
+    stats
 )
 
 macos_packages=(
@@ -50,7 +54,7 @@ macos_packages=(
     findutils
     fd
     upx
-    go     # google
+    go
     grpc
     protobuf
     graphviz
