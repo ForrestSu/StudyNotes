@@ -85,9 +85,11 @@ cask_gui_tools=(
     postman
     # gif recorder
     licecap
+    # hidden bar
+    hiddenbar
 )
 
 brew install "${macos_packages[@]}" asciinema hugo
 
-brew cask install  "${cask_gui_tools[@]}"
+brew install --cask "${cask_gui_tools[@]}"
 
