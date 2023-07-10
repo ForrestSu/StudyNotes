@@ -1,9 +1,93 @@
 #!/bin/bash
 
-curdir=`pwd`
-echo "append to ~/.zshrc: "
-cat ${curdir}/zshrc >> ~/.zshrc
+# sq remove boost pkgs at 2020-09-27 17:19;
+# sunquan update at 202-06-11 22:59;
 
-dest="/usr/local/bin"
-echo "install <myunzip.py> into: "${dest}
-ln -s ${curdir}/myunzip.py ${dest}/myunzip.py
+basic_tools=(
+    ascii
+    cloc
+    dos2unix
+    gdb
+    gdbm
+    gettext
+    gflags
+    git
+    # use GNU sed
+    gsed
+    htop
+    iftop
+    iperf
+    iperf3
+    nasm
+    nghttp2
+    node
+    p7zip
+    parallel
+    readline
+    tmux
+    tree
+    watch
+    wget
+    python
+    # disk usage
+    gdu
+    dust
+    # firewall
+    lulu
+    # system monitor
+    stats
+)
+
+macos_packages=(
+    "${basic_tools[@]}"
+    autoconf
+    automake
+    bazel
+    cmake
+    bwm-ng  # net tools
+    nmap
+    iproute2mac
+    c-ares
+    elixir
+    erlang
+    findutils
+    fd
+    upx
+    go
+    grpc
+    protobuf
+    graphviz
+    jemalloc
+    libssh
+    libtool
+    libuv
+    maven
+    nginx
+    openssl
+    redis
+    spdlog
+    sqlite
+    tinyxml2 # config
+)
+
+cask_gui_tools=(
+    aria2gui  # download file
+    iina
+    notion
+    # mysql-client
+    sequel-pro
+    # tools
+    wireshark
+    charles
+    postman
+    # gif recorder
+    licecap
+    # hidden bar
+    hiddenbar
+    visual-studio-code
+)
+
+brew install "${macos_packages[@]}" asciinema hugo
+
+brew install --cask "${cask_gui_tools[@]}"
+
