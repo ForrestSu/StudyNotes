@@ -29,6 +29,8 @@ basic_tools=(
     watch
     wget
     python
+    # remote sync
+    rsync
     # disk usage
     gdu
     dust
@@ -56,6 +58,7 @@ macos_packages=(
     go
     grpc
     protobuf
+    protoc-gen-go
     graphviz
     jemalloc
     libssh
@@ -84,7 +87,12 @@ cask_gui_tools=(
     licecap
     # hidden bar
     hiddenbar
+    # docker
+    docker
     visual-studio-code
+    google-chrome
+    # tencent
+    tencent-meeting
 )
 
 brew install "${macos_packages[@]}" asciinema hugo
