@@ -34,10 +34,9 @@ basic_tools=(
     # disk usage
     gdu
     dust
-    # firewall
-    lulu
-    # system monitor
-    stats
+    asciinema
+    # blog
+    hugo
 )
 
 macos_packages=(
@@ -70,12 +69,10 @@ macos_packages=(
     redis
     spdlog
     sqlite
-    tinyxml2 # config
 )
 
 cask_gui_tools=(
     aria2gui  # download file
-    iina
     notion
     # mysql-client
     sequel-pro
@@ -83,19 +80,41 @@ cask_gui_tools=(
     wireshark
     charles
     postman
-    # gif recorder
-    licecap
     # hidden bar
     hiddenbar
-    # docker
-    docker
-    visual-studio-code
+    # firewall
+    lulu
+    # system monitor
+    stats
     google-chrome
-    # tencent
+    # dev tools
+    visual-studio-code
+    beyond-compare # gui-diff
+    docker
+    goland
+)
+
+media_gui_tools=(
+    iina
+    # gif recorder
+    licecap
+    # record screen with audio
+    blackhole-16ch
+    # obs-studio: recording screen
+    obs
+)
+
+office_gui_tools=(
+    # sogou input
+    sogouinput
+    # 腾讯会议
     tencent-meeting
 )
 
-brew install "${macos_packages[@]}" asciinema hugo
+
+brew install "${macos_packages[@]}"
 
 brew install --cask "${cask_gui_tools[@]}"
+brew install --cask "${media_gui_tools[@]}"
+brew install --cask "${office_gui_tools[@]}"
 
