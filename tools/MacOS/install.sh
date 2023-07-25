@@ -45,13 +45,14 @@ macos_packages=(
     automake
     bazel
     cmake
-    bwm-ng  # net tools
+    # net tools
+    bwm-ng
     nmap
     iproute2mac
     c-ares
-    elixir
-    erlang
     findutils
+    # code format
+    clang-format
     fd
     upx
     go
