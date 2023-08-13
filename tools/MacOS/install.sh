@@ -100,12 +100,14 @@ media_gui_tools=(
     # gif recorder
     licecap
     # record screen with audio
-    blackhole-16ch
+    blackhole-2ch
     # obs-studio: recording screen
     obs
 )
 
 office_gui_tools=(
+    libreoffice
+    libreoffice-language-pack
     # sogou input
     sogouinput
     # 腾讯会议
