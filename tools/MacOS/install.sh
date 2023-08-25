@@ -1,7 +1,11 @@
 #!/bin/bash
 
-# sq remove boost pkgs at 2020-09-27 17:19;
-# sunquan update at 202-06-11 22:59;
+# 2022-06-11 sunquan updated.
+# 2023-08-25 manual readme.
+
+# manual install:
+# 1 brew
+# 2 oh-my-zsh
 
 basic_tools=(
     ascii
@@ -34,6 +38,8 @@ basic_tools=(
     # disk usage
     gdu
     dust
+    zsh-completions
+    # record terminal
     asciinema
     # blog
     hugo
