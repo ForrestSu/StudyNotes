@@ -52,6 +52,7 @@ macos_packages=(
     bazel
     cmake
     # net tools
+    gping
     bwm-ng
     nmap
     iproute2mac
