@@ -43,6 +43,8 @@ basic_tools=(
     asciinema
     # blog
     hugo
+    # ocr
+    tesseract
 )
 
 macos_packages=(
