@@ -45,6 +45,8 @@ basic_tools=(
     hugo
     # ocr
     tesseract
+    # catimg
+    imagemagick
 )
 
 macos_packages=(

@@ -9,8 +9,16 @@ rsync -avh --progress Fonts/  ~/Library/Fonts/
 # 1) zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
+# 2) zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+
 # vim ~/.zshrc
 #plugins=(
-#    # other plugins...
-#    zsh-autosuggestions
-#)
+#   git
+#   zsh-autosuggestions
+#   zsh-syntax-highlighting
+#   z
+#   extract
+#   catimg
+# )
