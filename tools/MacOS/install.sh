@@ -99,6 +99,8 @@ cask_gui_tools=(
     # system monitor
     stats
     google-chrome
+    # pdf tools
+    poppler
     # dev tools
     visual-studio-code
     beyond-compare # gui-diff
