@@ -106,6 +106,8 @@ cask_gui_tools=(
     beyond-compare # gui-diff
     docker
     goland
+    # zip
+    keka
 )
 
 media_gui_tools=(
