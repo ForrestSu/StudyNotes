@@ -47,6 +47,8 @@ basic_tools=(
     tesseract
     # catimg
     imagemagick
+    # node.js
+    node
 )
 
 macos_packages=(
@@ -83,31 +85,37 @@ macos_packages=(
     sqlite
 )
 
-cask_gui_tools=(
-    aria2gui  # download file
+gui_cask_tools=(
     notion
+    # hidden bar
+    hiddenbar
+    # system monitor
+    stats
+    google-chrome
+    # pdf tools
+    poppler
+    # zip
+    keka
+    # battery optimizer 80%
+    AlDente
+)
+
+dev_gui_tools=(
+    # download file
+    aria2gui
     # mysql-client
     sequel-pro
     # tools
     wireshark
     charles
     postman
-    # hidden bar
-    hiddenbar
     # firewall
     lulu
-    # system monitor
-    stats
-    google-chrome
-    # pdf tools
-    poppler
     # dev tools
     visual-studio-code
     beyond-compare # gui-diff
     docker
     goland
-    # zip
-    keka
 )
 
 media_gui_tools=(
@@ -118,6 +126,7 @@ media_gui_tools=(
     blackhole-2ch
     # obs-studio: recording screen
     obs
+    # 截图工具 iShot 应用市场
 )
 
 office_gui_tools=(
@@ -132,7 +141,8 @@ office_gui_tools=(
 
 brew install "${macos_packages[@]}"
 
-brew install --cask "${cask_gui_tools[@]}"
+brew install --cask "${gui_cask_tools[@]}"
+brew install --cask "${dev_gui_tools[@]}"
 brew install --cask "${media_gui_tools[@]}"
 brew install --cask "${office_gui_tools[@]}"
 
