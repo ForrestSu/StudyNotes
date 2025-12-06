@@ -96,6 +96,8 @@ gui_cask_tools=(
     poppler
     # zip
     keka
+    # 外接显示器亮度控制
+    MonitorControl
     # battery optimizer 80%
     AlDente
 )
