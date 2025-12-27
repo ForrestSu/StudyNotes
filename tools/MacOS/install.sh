@@ -86,6 +86,11 @@ macos_packages=(
 )
 
 gui_cask_tools=(
+    # Notes增强
+    ProNotes
+    # 全屏快捷键提示
+    FlyKey
+    # 笔记软件
     notion
     # hidden bar
     hiddenbar
