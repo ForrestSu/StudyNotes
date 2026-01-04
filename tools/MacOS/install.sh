@@ -83,6 +83,8 @@ macos_packages=(
     redis
     spdlog
     sqlite
+    # 转换为 webp
+    webp
 )
 
 gui_cask_tools=(
