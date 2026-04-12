@@ -85,6 +85,8 @@ macos_packages=(
     sqlite
     # 转换为 webp
     webp
+    # 发布公众号文章
+    geekjourneyx/tap/md2wechat
 )
 
 gui_cask_tools=(
