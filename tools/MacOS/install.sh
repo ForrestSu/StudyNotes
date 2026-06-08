@@ -107,8 +107,6 @@ gui_cask_tools=(
     keka
     # 外接显示器亮度控制
     MonitorControl
-    # battery optimizer 80%
-    AlDente
 )
 
 dev_gui_tools=(
@@ -131,6 +129,8 @@ dev_gui_tools=(
 
 media_gui_tools=(
     iina
+    # 替代 Photoshop
+    gimp
     # gif recorder
     licecap
     # record screen with audio
