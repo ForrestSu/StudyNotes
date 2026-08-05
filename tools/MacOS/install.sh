@@ -106,7 +106,9 @@ gui_cask_tools=(
     # zip
     keka
     # 外接显示器亮度控制
-    MonitorControl
+    # MonitorControl
+    # mac M芯片-外接显示器禁止dithering
+    stillcolor
 )
 
 dev_gui_tools=(
