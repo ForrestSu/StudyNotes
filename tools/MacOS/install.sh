@@ -85,15 +85,11 @@ macos_packages=(
     sqlite
     # 转换为 webp
     webp
-    # 发布公众号文章
-    geekjourneyx/tap/md2wechat
 )
 
 gui_cask_tools=(
     # Notes增强
     ProNotes
-    # 全屏快捷键提示
-    FlyKey
     # 笔记软件
     notion
     # hidden bar
@@ -112,8 +108,6 @@ gui_cask_tools=(
 )
 
 dev_gui_tools=(
-    # download file
-    aria2gui
     # mysql-client
     sequel-pro
     # tools
@@ -135,7 +129,7 @@ media_gui_tools=(
     gimp
     # gif recorder
     licecap
-    # record screen with audio
+    # 虚拟音频设备 (录制多个音频设备)
     blackhole-2ch
     # obs-studio: recording screen
     obs
